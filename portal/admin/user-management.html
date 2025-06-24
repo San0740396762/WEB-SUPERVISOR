@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - Taveta TVC</title>
+  <link rel="stylesheet" href="/portal/admin/styles.css">
+  <link rel="stylesheet" href="/portal/admin/user-management.css">
+  <link rel="stylesheet" href="/portal/admin/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h1 class="logo">Taveta <span>Admin</span></h1>
+        <button id="sidebar-toggle" class="sidebar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    
+      <div class="sidebar-content">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/portal/admin/index.html" class="nav-link">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="/portal/admin/user-management.html" class="nav-link">
+              <i class="fas fa-users-cog"></i>
+              <span>User Management</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/admin/course-program.html" class="nav-link">
+              <i class="fas fa-book-reader"></i>
+              <span>Courses & Programs</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/admin/results-performance.html" class="nav-link">
+              <i class="fas fa-check-double"></i>
+              <span>Results Performance</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/admin/notifications.html" class="nav-link">
+              <i class="fas fa-bullhorn"></i>
+              <span>Broadcast</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    
+      <div class="sidebar-footer">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/portal/admin/profile.html" class="nav-link">
+              <i class="fas fa-user-cog"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/admin/#" id="logout-button" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <header class="header">
+        <h1>User Management</h1>
+        <div class="header-actions">
+          <input type="text" id="user-search" placeholder="Search by name..." />
+          <select id="role-filter">
+            <option value="">All Roles</option>
+            <option value="student">Student</option>
+            <option value="trainer">Trainer</option>
+          </select>
+          <button class="add-user-btn" id="add-user-btn">Add User</button>
+          <button class="add-user-btn" id="upload-users-btn"><i class="fas fa-cloud-upload"></i></button>
+        </div>
+      </header>
+    
+      <section id="user-table-section">
+        <table class="user-table">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="user-table-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </section>
+    
+      <!-- Modal -->
+      <div id="user-modal" class="modal hidden">
+        <div class="modal-content">
+          <h2 id="modal-title">Add User</h2>
+          <form id="user-form">
+            <input type="hidden" id="user-id" />
+            <input type="text" id="full-name" placeholder="Full Name" required />
+            <input type="email" id="email" placeholder="Email" required />
+            <select id="role" required>
+              <option value="">Select Role</option>
+              <option value="student">Student</option>
+              <option value="trainer">Trainer</option>
+            </select>
+            <input type="password" id="password" placeholder="Password" required />
+            <label>
+              <input type="checkbox" id="active-status" checked /> Active
+            </label>
+            <div class="modal-actions">
+              <button type="submit">Save</button>
+              <button type="button" id="close-modal">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/portal/admin/user-management.js"></script>
+</body>
+</html>

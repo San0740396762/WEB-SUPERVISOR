@@ -1,0 +1,164 @@
+/* Footer */
+.footer {
+  background-color: var(--university-navy);
+  color: white;
+  padding: 4rem 0 2rem;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  background: transparent;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.footer-logo-container {
+  justify-items: center;
+  margin-left: -0.75rem;
+
+}
+
+.footer-col:first-child {
+  grid-column: 1 / span 1;
+}
+
+.footer-logo {
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-logo span {
+  color: var(--university-burgundy);
+}
+
+.footer-description {
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  transition: var(--transition);
+}
+
+.social-link:hover {
+  background-color: var(--university-accent);
+  color: white;
+}
+
+.footer-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: #ccc;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-info li {
+  display: flex;
+  align-items: flex-start;
+}
+
+.contact-info i {
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.contact-info span {
+  color: #ccc;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright {
+  color: #999;
+  font-size: 0.875rem;
+}
+
+.footer-bottom-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-bottom-links a {
+  color: #999;
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+
+.footer-bottom-links a:hover {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .container {
+    background: transparent;
+  }
+
+  .footer-content {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+  }
+}

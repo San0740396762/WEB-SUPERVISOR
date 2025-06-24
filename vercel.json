@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "name": "taveta-tvc",
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
+
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/portal", "destination": "/portal/index.html" },
+    
+    { "source": "/auth", "destination": "/portal/auth.html" },
+    { "source": "/portal/auth", "destination": "/portal/auth.html" },
+    { "source": "/portal/courses", "destination": "/portal/courses.html" },
+    { "source": "/portal/grades", "destination": "/portal/grades.html" },
+    { "source": "/portal/profile", "destination": "/portal/profile.html" },
+    { "source": "/portal/resources", "destination": "/portal/resources.html" },
+    { "source": "/portal/schedule", "destination": "/portal/schedule.html" },
+
+    { "source": "/portal/admin", "destination": "/portal/admin/index.html" },
+    { "source": "/portal/admin/:path*", "destination": "/portal/admin/:path*" },
+
+    { "source": "/portal/lectures", "destination": "/portal/lectures/lectures.html" },
+    { "source": "/portal/lectures/:path*", "destination": "/portal/lectures/:path*" }
+  ],
+
+  "headers": [
+    {
+      "source": "/(.*)\\.css",
+      "headers": [
+        { "key": "Content-Type", "value": "text/css" }
+      ]
+    },
+    {
+      "source": "/portal/(.*)\\.css",
+      "headers": [
+        { "key": "Content-Type", "value": "text/css" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.js",
+      "headers": [
+        { "key": "Content-Type", "value": "application/javascript" }
+      ]
+    },
+    {
+      "source": "/portal/(.*)\\.js",
+      "headers": [
+        { "key": "Content-Type", "value": "application/javascript" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "max-age=31536000" }
+      ]
+    }
+  ]
+}

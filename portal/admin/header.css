@@ -1,0 +1,110 @@
+/* Base Header Styles */
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+.header-actions {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Form Elements */
+input[type="text"],
+select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  min-width: 150px;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: #0a2240;
+  box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+}
+
+/* Buttons */
+.primary-btn,
+.add-user-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: #0a2240;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.primary-btn:hover,
+.add-user-btn:hover {
+  background: #0a2230;
+}
+
+/* Icon Buttons */
+.btn-icon {
+  padding: 0.5rem;
+  min-width: 38px;
+  justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .header-actions {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    width: 100%;
+    gap: 0.5rem;
+  }
+  
+  input[type="text"],
+  select,
+  .primary-btn {
+    width: 100%;
+  }
+  
+  .header h1 {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .primary-btn span {
+    display: none;
+  }
+  
+  .primary-btn i {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Life - Taveta TVC</title>
+    <link rel="icon" href="images/Taveta_logo.png" type="image/png" />
+    <meta name="description" content="Discover vibrant student life at Campus Vista University. Explore housing, clubs, sports, wellness, and more. Join a community that supports personal growth and academic success.">
+    <meta name="keywords" content="Campus Vista University, student life, housing, clubs, sports, wellness, campus events, student resources, university community">
+    <meta name="author" content="Campus Vista University">
+    <meta property="og:title" content="Student Life - Campus Vista University">
+    <meta property="og:description" content="Experience life beyond the classroom at Campus Vista University. Explore housing, clubs, sports, and wellness resources.">
+    <meta property="og:url" content="https://tavetatvc.ac.ke/student-life.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://tavetatvc.ac.ke/assets/images/logo.PNG">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Student Life - Campus Vista University">
+    <meta name="twitter:description" content="Discover vibrant student life at Campus Vista University. Explore housing, clubs, sports, and wellness resources.">
+    <meta name="twitter:image" content="https://tavetatvc.ac.ke/assets/images/logo.PNG">
+
+    <link rel="stylesheet" href="student-life.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="navbar.css" />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-content"> 
+          <div class="navbar-brand">
+            <a href="index.html" class="navbar-logo" data-page="index.html">
+            <img src="images/Taveta_logo.png" alt="Taveta TVC Logo" id="tvcLogo" />
+            </a>
+          </div>
+          <a href="index.html" class="navbar-logo" data-page="index.html">
+            <div class="logo-text">Taveta Techical & <br><span>Vocational College</span></div>
+          </a>
+        
+          <div class="navbar-menu" id="navbarMenu">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="about.html" class="nav-link dropdown-toggle" data-page="about.html">
+              About Us <i class="icon-chevron-down"></i>
+              </a>
+              <div class="dropdown-menu">
+              <a href="about.html#history" class="dropdown-item" data-page="about/history.html">History</a>
+              <a href="about.html#mission" class="dropdown-item" data-page="about/mission.html">Mission & Vision</a>
+              <a href="about.html#leadership" class="dropdown-item" data-page="about/leadership.html">Leadership</a>
+              <a href="about.html#campus" class="dropdown-item" data-page="about/campus.html">Campus Locations</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="academics.html" class="nav-link dropdown-toggle" data-page="academics.html">
+              Academics <i class="icon-chevron-down"></i>
+              </a>
+              <div class="dropdown-menu">
+              <a href="academics.html#courses" class="dropdown-item" data-page="academics/faculties.html">Courses</a>
+              <a href="academics.html#departments" class="dropdown-item" data-page="academics/departments.html">Departments</a>
+              <a href="academics.html#programs" class="dropdown-item" data-page="academics/programs.html">Programs</a>
+              <a href="academics.html#calendar" class="dropdown-item" data-page="academics/calendar.html">Academic Calendar</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="admissions.html" class="nav-link dropdown-toggle" data-page="admissions.html">
+              Admissions <i class="icon-chevron-down"></i>
+              </a>
+              <div class="dropdown-menu">
+                <a href="admissions.html#undergraduate" class="dropdown-item" data-page="admissions/undergraduate.html">I.V.Q (level 3)</a>
+                <a href="admissions.html#postgraduate" class="dropdown-item" data-page="admissions/postgraduate.html">Certificate (level 4)</a>
+                <a href="admissions.html#international" class="dropdown-item" data-page="admissions/international.html">H. Diploma (level 5)</a>
+                <a href="admissions.html#scholarships" class="dropdown-item" data-page="admissions/scholarships.html">P. Diploma (level 6)</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="student-life.html" class="nav-link dropdown-toggle" data-page="student-life.html">
+                Student Life <i class="icon-chevron-down"></i>
+              </a>
+              <div class="dropdown-menu">
+                <a href="student-life.html#clubs" class="dropdown-item">Clubs & Societies</a>
+                <a href="student-life.html#events" class="dropdown-item">Events</a>
+                <a href="student-life.html#support" class="dropdown-item">Student Support</a>
+              </div>
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a href="research.html" class="nav-link dropdown-toggle" data-page="research.html">
+                Research <i class="icon-chevron-down"></i>
+              </a>
+              <div class="dropdown-menu">
+                <a href="research.html#projects" class="dropdown-item">Projects</a>
+                <a href="research.html#publications" class="dropdown-item">Publications</a>
+                <a href="research.html#collaborations" class="dropdown-item">Collaborations</a>
+              </div>
+            </li>
+            
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle">
+              News & Events <i class="icon-chevron-down"></i>
+              </a>
+              <div class="dropdown-menu">
+              <a href="news.html" class="dropdown-item">News</a>
+              <a href="events.html" class="dropdown-item">Events</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+            </li>
+            <li class="nav-item navbar-actions">
+              <a href="portal.html" class="btn-primary" data-page="portal.html">Student Portal</a>
+            </li>
+            </ul>
+            
+          </div>
+        
+          <div class="navbar-actions">
+            <button class="navbar-toggler" id="navbarToggler">
+            <span class="toggler-icon"></span>
+            <span class="toggler-icon"></span>
+            <span class="toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Hero Section -->
+      <div class="hero hero-section student-life-hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">Experience Life Beyond the Classroom</h1>
+            <p class="hero-description animate-fade-in">
+              At Taveta Technical and Vocational College, student life is vibrant, diverse, and supportive. Discover a community where personal growth happens alongside academic achievement.
+            </p>
+            <div class="hero-buttons animate-fade-in">
+              <a href="student-life/get-involved.html" class="btn btn-primary">
+                Get Involved <i class="icon-arrow-right"></i>
+              </a>
+              <a href="virtual-tour.html" class="btn btn-outline">
+                Take a Virtual Tour
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-overlay"></div>
+      </div>
+
+      <!-- Quick Access Grid -->
+      <section class="quick-links section-padding">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Student Life at a Glance</h2>
+            <p class="section-description">Explore the many aspects of Taveta Technical  life that make our college community special</p>
+          </div>
+          <div class="quick-links-grid">
+            <a href="student-life/housing.html" class="quick-link-card">
+              <div class="icon-container">
+                <i class="icon-users"></i>
+              </div>
+              <h3 class="quick-link-title">Housing & Residence</h3>
+              <p class="quick-link-description">Find on-college and off-college housing options</p>
+              <div class="learn-more">
+                Learn more <i class="icon-arrow-right"></i>
+              </div>
+            </a>
+            
+            <a href="student-life/organizations.html" class="quick-link-card">
+              <div class="icon-container">
+                <i class="icon-palette"></i>
+              </div>
+              <h3 class="quick-link-title">Clubs & Organizations</h3>
+              <p class="quick-link-description">Discover student groups and activities</p>
+              <div class="learn-more">
+                Learn more <i class="icon-arrow-right"></i>
+              </div>
+            </a>
+            
+            <a href="student-life/sports.html" class="quick-link-card">
+              <div class="icon-container">
+                <i class="icon-medal"></i>
+              </div>
+              <h3 class="quick-link-title">Sports & Recreation</h3>
+              <p class="quick-link-description">Athletic teams, intramurals, and fitness facilities</p>
+              <div class="learn-more">
+                Learn more <i class="icon-arrow-right"></i>
+              </div>
+            </a>
+            
+            <a href="student-life/health.html" class="quick-link-card">
+              <div class="icon-container">
+                <i class="icon-heart"></i>
+              </div>
+              <h3 class="quick-link-title">Health & Wellness</h3>
+              <p class="quick-link-description">Healthcare, mental health, and wellness resources</p>
+              <div class="learn-more">
+                Learn more <i class="icon-arrow-right"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Student Stories/Testimonials -->
+      <section class="testimonials-section section-padding">
+        <div class="container">
+          <div class="section-header-with-link">
+            <div>
+              <h2 class="section-title">Student Stories</h2>
+              <p class="section-description">Hear directly from our students about their campus experiences</p>
+            </div>
+            <a href="student-life/stories.html" class="view-all-link">
+              View all stories <i class="icon-arrow-right"></i>
+            </a>
+          </div>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-header">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=faces" 
+                  alt="Alex Rodriguez" 
+                  class="testimonial-image"
+                />
+                <div>
+                  <h3 class="testimonial-name">Alex Rodriguez</h3>
+                  <p class="testimonial-info">Junior, Computer Science</p>
+                </div>
+              </div>
+              <blockquote class="testimonial-quote">"Joining the Robotics Club opened so many doors for me. I've made lifelong friends and even secured an internship through connections I made there."</blockquote>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-header">
+                <img 
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=faces" 
+                  alt="Jasmine Patel" 
+                  class="testimonial-image"
+                />
+                <div>
+                  <h3 class="testimonial-name">Jasmine Patel</h3>
+                  <p class="testimonial-info">Sophomore, Biology</p>
+                </div>
+              </div>
+              <blockquote class="testimonial-quote">"Living in the dorms my first year was the best decision I made. The community advisors and events made it easy to adjust to college life and meet new people."</blockquote>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-header">
+                <img 
+                  src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=300&h=300&fit=crop&crop=faces" 
+                  alt="Marcus Johnson" 
+                  class="testimonial-image"
+                />
+                <div>
+                  <h3 class="testimonial-name">Marcus Johnson</h3>
+                  <p class="testimonial-info">Senior, Business Administration</p>
+                </div>
+              </div>
+              <blockquote class="testimonial-quote">"The leadership opportunities I've had through student government have prepared me for my career in ways classroom learning alone never could."</blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Campus Map -->
+      <section class="campus-map-section section-padding">
+        <div class="container">
+          <div class="campus-map-container">
+            <div class="campus-map-content">
+              <h2 class="section-title">Navigate College Life</h2>
+              <p class="section-description">
+                Our interactive map helps you locate key student life facilities across college. 
+                From residence halls to recreational spaces, find everything you need for a 
+                fulfilling college experience.
+              </p>
+              <ul class="campus-map-list">
+                <li class="campus-map-item">
+                  <i class="icon-map-pin"></i>
+                  <span>Computer laboratory</span>
+                </li>
+                <li class="campus-map-item">
+                  <i class="icon-map-pin"></i>
+                  <span>Cafeteria</span>
+                </li>
+                <li class="campus-map-item">
+                  <i class="icon-map-pin"></i>
+                  <span>Jitume laboratory</span>
+                </li>
+                <li class="campus-map-item">
+                  <i class="icon-map-pin"></i>
+                  <span>Stafrooms</span>
+                </li>
+              </ul>
+              <a href="campus-map.html" class="btn btn-primary">
+                Explore Full Map <i class="icon-arrow-right"></i>
+              </a>
+            </div>
+            <div class="campus-map-image">
+              <img 
+                src="https://images.unsplash.com/photo-1569447891616-5fa6a2d2c6c7?w=800&h=600&fit=crop" 
+                alt="Campus Map Preview"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Events Feed -->
+      <section class="events-section section-padding">
+        <div class="container">
+          <div class="section-header-with-link">
+            <div>
+              <h2 class="section-title">Upcoming Taveta Technical Events</h2>
+              <p class="section-description">Stay connected with what's happening on College</p>
+            </div>
+            <a href="events.html" class="view-all-link">
+              View all events <i class="icon-arrow-right"></i>
+            </a>
+          </div>
+          <div class="events-grid">
+            <div class="event-card">
+              <div class="event-category">Social</div>
+              <h3 class="event-title">Welcome Week Festival</h3>
+              <div class="event-details">
+                <div class="event-detail">
+                  <i class="icon-calendar"></i>
+                  <span>September 1, 2024</span>
+                </div>
+                <div class="event-detail">
+                  <i class="icon-clock"></i>
+                  <span>4:00 PM - 9:00 PM</span>
+                </div>
+                <div class="event-detail">
+                  <i class="icon-map-pin"></i>
+                  <span>College Commons</span>
+                </div>
+              </div>
+              <p class="event-description">Kick off the new school year with music, food, and fun activities</p>
+              <a href="events/welcome-week.html" class="event-link">
+                Event details <i class="icon-arrow-right"></i>
+              </a>
+            </div>
+
+            <div class="event-card">
+              <div class="event-category">Career</div>
+              <h3 class="event-title">Career Fair: Tech & Engineering</h3>
+              <div class="event-details">
+                <div class="event-detail">
+                  <i class="icon-calendar"></i>
+                  <span>September 15, 2024</span>
+                </div>
+                <div class="event-detail">
+                  <i class="icon-clock"></i>
+                  <span>10:00 AM - 3:00 PM</span>
+                </div>
+                <div class="event-detail">
+                  <i class="icon-map-pin"></i>
+                  <span>Student Union Ballroom</span>
+                </div>
+              </div>
+              <p class="event-description">Connect with employers from tech and engineering industries</p>
+              <a href="events/career-fair.html" class="event-link">
+                Event details <i class="icon-arrow-right"></i>
+              </a>
+            </div>
+
+            <div class="event-card">
+              <div class="event-category">Sports</div>
+              <h3 class="event-title">Intramural Soccer Tournament</h3>
+              <div class="event-details">
+                <div class="event-detail">
+                  <i class="icon-calendar"></i>
+                  <span>September 18, 2024</span>
+                </div>
+                <div class="event-detail">
+                  <i class="icon-clock"></i>
+                  <span>1:00 PM - 5:00 PM</span>
+                </div>
+                <div class="event-detail">
+                  <i class="icon-map-pin"></i>
+                  <span>College Athletic Field</span>
+                </div>
+              </div>
+              <p class="event-description">Join or cheer for teams in our college-wide soccer tournament</p>
+              <a href="events/soccer-tournament.html" class="event-link">
+                Event details <i class="icon-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Photo Gallery -->
+      <section class="gallery-section section-padding">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Student Life Gallery</h2>
+            <p class="section-description">Glimpses of college events, club activities, and everyday student experiences</p>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img 
+                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&h=350&fit=crop" 
+                alt="Campus life 1"
+                class="gallery-image"
+              />
+            </div>
+            <div class="gallery-item">
+              <img 
+                src="https://images.unsplash.com/photo-1537202108838-e7072bad1927?w=500&h=350&fit=crop" 
+                alt="Campus life 2"
+                class="gallery-image"
+              />
+            </div>
+            <div class="gallery-item">
+              <img 
+                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&h=350&fit=crop" 
+                alt="Campus life 3"
+                class="gallery-image"
+              />
+            </div>
+            <div class="gallery-item">
+              <img 
+                src="https://images.unsplash.com/photo-1627556704302-624286467c65?w=500&h=350&fit=crop" 
+                alt="Campus life 4"
+                class="gallery-image"
+              />
+            </div>
+            <div class="gallery-item">
+              <img 
+                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&h=350&fit=crop" 
+                alt="Campus life 5"
+                class="gallery-image"
+              />
+            </div>
+            <div class="gallery-item">
+              <img 
+                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&h=350&fit=crop" 
+                alt="Campus life 6"
+                class="gallery-image"
+              />
+            </div>
+          </div>
+          <div class="gallery-lightbox" id="gallery-lightbox">
+            <div class="lightbox-content">
+              <span class="lightbox-close">&times;</span>
+              <img src="" alt="Enlarged gallery image">
+            </div>
+          </div>
+          <div class="text-center">
+            <a href="student-life/gallery.html" class="btn btn-primary">
+              View Full Gallery <i class="icon-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- How to Get Involved -->
+      <section class="get-involved-section section-padding">
+        <div class="container">
+          <div class="get-involved-content">
+            <h2 class="section-title">Get Involved</h2>
+            <p class="section-description">
+              Your College experience extends far beyond the classroom. 
+              Discover clubs, organizations, leadership opportunities, and 
+              volunteer programs that match your interests and career goals.
+            </p>
+            <div class="involvement-options">
+              <div class="involvement-option">
+                <h3>Join a Club</h3>
+                <p>Choose from over 200 student organizations based on your interests</p>
+              </div>
+              <div class="involvement-option">
+                <h3>Lead a Team</h3>
+                <p>Develop leadership skills in student government or club management</p>
+              </div>
+              <div class="involvement-option">
+                <h3>Volunteer</h3>
+                <p>Make a difference in our community through service opportunities</p>
+              </div>
+            </div>
+            <a href="student-life/get-involved.html" class="btn btn-light">
+              Explore Opportunities <i class="icon-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resources & Support -->
+      <section class="resources-section section-padding">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Student Resources & Support</h2>
+            <p class="section-description">We're committed to supporting your success and wellbeing throughout your College journey</p>
+          </div>
+          <div class="resources-grid">
+            <a href="resources/academic-advising.html" class="resource-card">
+              <div class="resource-icon">
+                <i class="icon-book-open"></i>
+              </div>
+              <h3 class="resource-title">Academic Advising</h3>
+            </a>
+            <a href="resources/counseling.html" class="resource-card">
+              <div class="resource-icon">
+                <i class="icon-heart"></i>
+              </div>
+              <h3 class="resource-title">Counseling Services</h3>
+            </a>
+            <a href="resources/safety.html" class="resource-card">
+              <div class="resource-icon">
+                <i class="icon-shield"></i>
+              </div>
+              <h3 class="resource-title">College Safety</h3>
+            </a>
+            <a href="resources/diversity.html" class="resource-card">
+              <div class="resource-icon">
+                <i class="icon-users"></i>
+              </div>
+              <h3 class="resource-title">Diversity & Inclusion</h3>
+            </a>
+          </div>
+          <div class="support-contact">
+            <div>
+              <h3>Need personal assistance?</h3>
+              <p>Our Student Support Center is available to help with any questions or concerns.</p>
+            </div>
+            <a href="support.html" class="btn btn-primary">
+              Contact Support <i class="icon-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script>
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-placeholder').innerHTML = data;
+        });
+    </script>
+
+    <!-- Scripts -->
+    <script src="student-life.js"></script>
+  </body>
+</html>

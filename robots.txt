@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /portal/
+Disallow: /portal/admin/
+Disallow: /portal/lectures/
+
+Allow: /
+
+Sitemap: https://taveta-tvc.vercel.app/sitemap.xml

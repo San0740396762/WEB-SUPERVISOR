@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - Taveta TVC</title>
+  <link rel="stylesheet" href="/portal/admin/styles.css">
+  <link rel="stylesheet" href="/portal/admin/user-management.css">
+  <link rel="stylesheet" href="/portal/admin/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h1 class="logo">Taveta <span>Admin</span></h1>
+      <button id="sidebar-toggle" class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  
+    <div class="sidebar-content">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="/portal/admin/index.html" class="nav-link">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/portal/admin/user-management.html" class="nav-link">
+            <i class="fas fa-users-cog"></i>
+            <span>User Management</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/portal/admin/course-program.html" class="nav-link">
+            <i class="fas fa-book-reader"></i>
+            <span>Courses & Programs</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a href="/portal/admin/results-performance.html" class="nav-link">
+            <i class="fas fa-check-double"></i>
+            <span>Results Performance</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/portal/admin/notifications.html" class="nav-link">
+            <i class="fas fa-bullhorn"></i>
+            <span>Broadcast</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="sidebar-footer">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="/portal/admin/profile.html" class="nav-link">
+            <i class="fas fa-user-cog"></i>
+            <span>Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/portal/admin/#" id="logout-button" class="nav-link">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main class="main-content">
+    <header class="header">
+      <h1>Results Suite</h1>
+      <div class="header-actions">
+        <input type="text" id="search-input" placeholder="Search student or course...">
+        <select id="status-filter">
+          <option value="">All Status</option>
+          <option value="Competent">Competent</option>
+          <option value="Not Yet Competent">Not Yet Competent</option>
+        </select>
+        <button id="export-results" class="primary-btn">Export CSV</button>
+      </div>
+    </header>
+
+    <section class="dashboard-grid">
+      <div class="stats-card">
+        <div class="stats-header">
+          <h3>Total Results</h3>
+          <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="stats-content">
+          <span class="stats-number" id="total-results">0</span>
+        </div>
+      </div>
+
+      <div class="stats-card">
+        <div class="stats-header">
+          <h3>Competent</h3>
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stats-content">
+          <span class="stats-number" id="competent-count">0</span>
+        </div>
+      </div>
+
+      <div class="stats-card">
+        <div class="stats-header">
+          <h3>Not Yet Competent</h3>
+          <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="stats-content">
+          <span class="stats-number" id="nyc-count">0</span>
+        </div>
+      </div>
+
+      <div class="stats-card">
+        <div class="stats-header">
+          <h3>Average Score</h3>
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stats-content">
+          <span class="stats-number" id="avg-score">0.0</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-charts">
+      <div class="chart-card">
+        <h3>Competency Distribution</h3>
+        <canvas id="competency-chart" height="300"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Course Performance</h3>
+        <canvas id="course-chart" height="300"></canvas>
+      </div>
+    </section>
+
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Course</th>
+          <th>Score</th>
+          <th>Status</th>
+          <th>Attempt</th>
+          <th>Assessor</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="results-body"></tbody>
+    </table>
+  </main>
+  <script src="/portal/admin/toggle.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    let chartStatus, chartCourse;
+
+    async function loadResults() {
+      const res = await fetch('/api/admin/results');
+      const data = await res.json();
+      renderResults(data);
+      updateStats(data);
+      updateCharts(data);
+    }
+
+    function renderResults(data) {
+      const statusFilter = document.getElementById('status-filter').value.toLowerCase();
+      const search = document.getElementById('search-input').value.toLowerCase();
+
+      const filtered = data.filter(r =>
+        (!statusFilter || r.status.toLowerCase() === statusFilter) &&
+        (r.student_name.toLowerCase().includes(search) || r.course_title.toLowerCase().includes(search))
+      );
+
+      document.getElementById('results-body').innerHTML = filtered.map(r => `
+        <tr>
+          <td>${r.student_name}</td>
+          <td>${r.course_title}</td>
+          <td>${r.score}</td>
+          <td>${r.status}</td>
+          <td>${r.attempt}</td>
+          <td>${r.assessor_name}</td>
+          <td>${r.date_assessed}</td>
+        </tr>
+      `).join('');
+    }
+
+    function updateStats(data) {
+      const total = data.length;
+      const competent = data.filter(r => r.status === 'Competent').length;
+      const nyc = data.filter(r => r.status === 'Not Yet Competent').length;
+      const avg = total > 0 ? (data.reduce((sum, r) => sum + r.score, 0) / total).toFixed(2) : '0.0';
+
+      document.getElementById('total-results').textContent = total;
+      document.getElementById('competent-count').textContent = competent;
+      document.getElementById('nyc-count').textContent = nyc;
+      document.getElementById('avg-score').textContent = avg;
+    }
+
+    function updateCharts(data) {
+      const counts = {
+        Competent: 0,
+        'Not Yet Competent': 0
+      };
+      const courseStats = {};
+
+      data.forEach(r => {
+        counts[r.status] = (counts[r.status] || 0) + 1;
+        courseStats[r.course_title] = courseStats[r.course_title] || [];
+        courseStats[r.course_title].push(r.score);
+      });
+
+      const ctx1 = document.getElementById('competency-chart');
+      if (chartStatus) chartStatus.destroy();
+      chartStatus = new Chart(ctx1, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(counts),
+          datasets: [{ data: Object.values(counts), backgroundColor: ['#22c55e', '#ef4444'] }]
+        },
+        options: { plugins: { legend: { position: 'bottom' } } }
+      });
+
+      const labels = Object.keys(courseStats);
+      const avgScores = labels.map(l => {
+        const scores = courseStats[l];
+        const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+        return avg.toFixed(2);
+      });
+
+      const ctx2 = document.getElementById('course-chart');
+      if (chartCourse) chartCourse.destroy();
+      chartCourse = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{ label: 'Average Score', data: avgScores, backgroundColor: '#3b82f6' }]
+        },
+        options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } }
+      });
+    }
+
+    document.getElementById('search-input').oninput = loadResults;
+    document.getElementById('status-filter').onchange = loadResults;
+    document.getElementById('export-results').onclick = () => window.open('https://binarywizard.pythonanywhere.com/api/admin/results/export', '_blank');
+
+    loadResults();
+  </script>
+</body>
+</html>

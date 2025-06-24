@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scholar Central - Authentication</title>
+  <link rel="stylesheet" href="/portal/auth.css">
+  <meta name="theme-color" content="#1e293b">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/portal/sw.js');
+    }
+  </script>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="card-header">
+        <img src="../../images/Taveta_logo.png" alt="Logo" class="logo">
+        <h1 class="card-title">Welcome to<br> Taveta TVC Portal</h1>
+        <p class="card-description">Sign in to access your account</p>
+      </div>
+      <div class="card-content">
+        <div class="tabs">
+          <div class="tab-content" id="signin-tab">
+            <form id="signin-form" class="form">
+              <div class="form-group">
+                <label for="signin-email">Email</label>
+                <input id="signin-email" name="email" type="email" required>
+              </div>
+              <div class="form-group">
+                <label for="signin-password">Password</label>
+                <input id="signin-password" name="password" type="password" required>
+              </div>
+              <button type="submit" class="button button-primary" id="signin-button">Sign In</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="/portal/auth.js"></script>
+</body>
+</html>

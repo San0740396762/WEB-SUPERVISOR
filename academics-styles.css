@@ -1,0 +1,1056 @@
+
+/* Base & Variables */
+:root {
+  --university-navy: #0A2463;
+  --university-burgundy: #8B1E3F;
+  --university-gray: #F2F2F2;
+  --university-accent: #3E92CC;
+  --university-light: #FFFFFF;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --border-radius: 0.5rem;
+  --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s ease;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-family: var(--font-poppins);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--university-navy);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.bg-gray {
+  background-color: var(--university-gray);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--university-burgundy);
+  color: white;
+  border: none;
+  outline: none;
+  padding: 7px;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  background-color: rgba(139, 30, 63, 0.9);
+}
+
+.btn-primary:focus {
+  outline: 2px solid var(--university-accent);
+  outline-offset: 2px;
+}
+
+.btn-secondary {
+  background-color: var(--university-navy);
+  color: white;
+  border: none;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(10, 36, 99, 0.9);
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  color: var(--university-navy);
+  border: 2px solid var(--university-navy);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--university-navy);
+  color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 400px;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://img.freepik.com/free-photo/clean-empty-library-hall_23-2149215414.jpg?ga=GA1.1.1805707505.1744204741&semt=ais_hybrid&w=740);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--university-navy);
+  z-index: -2;
+}
+
+.hero-content {
+  padding: 4rem 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-family: var(--font-poppins);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  max-width: 600px;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+  background-color: white;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 70px;
+  z-index: 990;
+}
+
+.tabs-nav {
+  display: flex;
+  overflow-x: auto;
+  padding: 1rem 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tabs-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-link {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  color: var(--university-navy);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.tab-link:hover {
+  color: var(--university-burgundy);
+}
+
+.tab-link.active {
+  color: var(--university-burgundy);
+  font-weight: 600;
+  border-bottom: 2px solid var(--university-burgundy);
+}
+
+.tab-link i {
+  margin-right: 0.5rem;
+}
+
+/* courses Section */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.faculty-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  display: flex;
+  transition: var(--transition);
+}
+
+.faculty-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.faculty-icon {
+  background-color: var(--university-navy);
+  color: white;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.faculty-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.faculty-title {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--university-navy);
+  margin-bottom: 0.75rem;
+}
+
+.faculty-description {
+  color: #666;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.faculty-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.meta-item i {
+  color: var(--university-burgundy);
+  margin-right: 0.5rem;
+}
+
+.faculty-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--university-burgundy);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.faculty-link i {
+  margin-left: 0.5rem;
+  transition: var(--transition);
+}
+
+.faculty-link:hover {
+  color: var(--university-navy);
+}
+
+.faculty-link:hover i {
+  transform: translateX(4px);
+}
+
+/* Departments Section */
+.departments-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+}
+
+.departments-filter {
+  margin-bottom: 2rem;
+}
+
+.filter-label {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--university-navy);
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-btn:hover {
+  border-color: var(--university-navy);
+}
+
+.filter-btn.active {
+  background-color: var(--university-navy);
+  color: white;
+  border-color: var(--university-navy);
+}
+
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.department-item {
+  border: 1px solid #e2e8f0;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.department-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow);
+  border-color: transparent;
+}
+
+.department-name {
+  font-weight: 600;
+  color: var(--university-navy);
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.department-info {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.department-link {
+  color: var(--university-burgundy);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.department-link:hover {
+  text-decoration: underline;
+}
+
+/* Programs Section */
+.programs-tabs {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+}
+
+.tabs-header {
+  display: flex;
+  background-color: var(--university-gray);
+}
+
+.tab-button {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: #555;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.tab-button:hover {
+  color: var(--university-burgundy);
+}
+
+.tab-button.active {
+  background-color: white;
+  color: var(--university-navy);
+  box-shadow: 0 -3px 0 var(--university-burgundy) inset;
+}
+
+.tabs-content {
+  padding: 2rem;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.program-search {
+  display: flex;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.program-search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-right: none;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  font-size: 0.95rem;
+}
+
+.program-search-input:focus {
+  outline: none;
+  border-color: var(--university-accent);
+}
+
+.program-search-btn {
+  background-color: var(--university-navy);
+  color: white;
+  border: none;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  padding: 0 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.program-search-btn:hover {
+  background-color: var(--university-burgundy);
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.program-card {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.program-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow);
+  border-color: transparent;
+}
+
+.program-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.program-title {
+  font-weight: 600;
+  color: var(--university-navy);
+  font-size: 1.1rem;
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.program-badge {
+  background-color: var(--university-burgundy);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.program-faculty {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.program-description {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.program-details {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.detail-item i {
+  color: var(--university-burgundy);
+  margin-right: 0.5rem;
+}
+
+.program-link {
+  display: inline-block;
+  color: var(--university-burgundy);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.program-link:hover {
+  text-decoration: underline;
+}
+
+.programs-footer {
+  text-align: center;
+}
+
+/* Calendar Section */
+.calendar-tabs {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.calendar-tab-button {
+  padding: 1rem 2rem;
+  background-color: var(--university-gray);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.calendar-tab-button:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+.calendar-tab-button.active {
+  background-color: white;
+  box-shadow: 0 -3px 0 var(--university-burgundy) inset;
+}
+
+.calendar-content {
+  padding: 2rem;
+}
+
+.calendar-pane {
+  display: none;
+}
+
+.calendar-pane.active {
+  display: block;
+}
+
+.semester-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.semester-button {
+  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.semester-button.active {
+  background-color: var(--university-navy);
+  color: white;
+  border-color: var(--university-navy);
+}
+
+.semester-pane {
+  display: none;
+}
+
+.semester-pane.active {
+  display: block;
+}
+
+.calendar-card {
+  border: 1px solid #e2e8f0;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+}
+
+.calendar-card-title {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--university-navy);
+  margin-bottom: 0.75rem;
+}
+
+.calendar-archive-note {
+  color: var(--university-burgundy);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.calendar-events {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.calendar-event {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.event-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--university-navy);
+  color: white;
+  border-radius: var(--border-radius);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.month {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.day {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.event-content {
+  flex: 1;
+}
+
+.event-title {
+  font-weight: 600;
+  color: var(--university-navy);
+  margin-bottom: 0.25rem;
+}
+
+.event-desc {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.calendar-download {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.calendar-resources {
+  margin-top: 3rem;
+}
+
+.resources-title {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--university-navy);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.resource-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.resource-card i {
+  font-size: 2rem;
+  color: var(--university-burgundy);
+  margin-bottom: 1rem;
+}
+
+.resource-card h4 {
+  font-weight: 600;
+  color: var(--university-navy);
+  margin-bottom: 0.5rem;
+}
+
+.resource-card p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--university-navy);
+  color: white;
+  padding: 4rem 0 2rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.footer-logo {
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-logo span {
+  color: var(--university-burgundy);
+}
+
+.footer-description {
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  transition: var(--transition);
+}
+
+.social-link:hover {
+  background-color: var(--university-accent);
+  color: white;
+}
+
+.footer-links-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: #ccc;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-info li {
+  display: flex;
+  align-items: flex-start;
+}
+
+.contact-info i {
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.contact-info span {
+  color: #ccc;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright {
+  color: #999;
+  font-size: 0.875rem;
+}
+
+.footer-bottom-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-bottom-links a {
+  color: #999;
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+
+.footer-bottom-links a:hover {
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .courses-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .footer-contact {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 992px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .programs-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .hero-section {
+    height: 350px;
+  }
+  
+  .courses-grid,
+  .departments-grid,
+  .programs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-contact {
+    grid-column: span 1;
+  }
+  
+  .footer-links-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .tabs-header {
+    flex-wrap: wrap;
+  }
+  
+  .tab-button {
+    flex: 1 0 50%;
+  }
+  
+  .semester-selector {
+    flex-wrap: wrap;
+  }
+  
+  .calendar-event {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .event-date {
+    width: 80px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  
+  .hero-section {
+    height: 300px;
+  }
+  
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+  }
+  
+  .calendar-tab-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .tab-button {
+    flex: 1 0 100%;
+  }
+}

@@ -1,0 +1,110 @@
+/* General Styling for Broadcast Form Section */
+.broadcast-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Form Container */
+#broadcast-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Form Group */
+.form-group {
+  flex-basis: 48%;  /* Default 2-column layout for larger screens */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Textarea */
+#broadcast-message {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  transition: border-color 0.3s ease;
+  min-height: 120px;
+}
+
+#broadcast-message:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* File Input */
+#document {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  transition: border-color 0.3s ease;
+}
+
+#document:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Select Input */
+#recipient {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  transition: border-color 0.3s ease;
+}
+
+#recipient:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Label Styling */
+.broadcast-form label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Submit Button */
+form .primary-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form .primary-btn:hover {
+  background-color: #2563eb;
+}
+
+form .primary-btn:active {
+  background-color: #1d4ed8;
+}
+
+/* Responsive Design - Stack Form in Columns for Small Screens */
+@media (max-width: 768px) {
+  #broadcast-form {
+    flex-direction: column;  /* Switch to column layout on small screens */
+  }
+
+  .form-group {
+    flex-basis: 100%;  /* Make form group take full width */
+  }
+}

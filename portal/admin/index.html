@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scholar Central - Admin Portal</title>
+  <link rel="stylesheet" href="/portal/admin/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h1 class="logo">Taveta <span>Admin</span></h1>
+        <button id="sidebar-toggle" class="sidebar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    
+      <div class="sidebar-content">
+        <ul class="nav-links">
+          <li class="nav-item active">
+            <a href="/portal/admin/index.html" class="nav-link">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/admin/user-management.html" class="nav-link">
+              <i class="fas fa-users-cog"></i>
+              <span>User Management</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/admin/course-program.html" class="nav-link">
+              <i class="fas fa-book-reader"></i>
+              <span>Courses & Programs</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/admin/results-performance.html" class="nav-link">
+              <i class="fas fa-check-double"></i>
+              <span>Results Performance</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/admin/notifications.html" class="nav-link">
+              <i class="fas fa-bullhorn"></i>
+              <span>Broadcast</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    
+      <div class="sidebar-footer">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/portal/admin/profile.html" class="nav-link">
+              <i class="fas fa-user-cog"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" id="logout-button" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>    
+
+    <main class="main-content">
+      <header class="header">
+        <h1>Admin Dashboard</h1>
+        <div class="header-actions">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search users, modules...">
+          </div>
+          <button class="notifications-button">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </button>
+        </div>
+      </header>
+    
+      <section class="dashboard-grid">
+        <div class="stats-card">
+          <div class="stats-header">
+            <h3>Total Students</h3>
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stats-content">
+            <span class="stats-number" id="total-students">--</span>
+          </div>
+        </div>
+    
+        <div class="stats-card">
+          <div class="stats-header">
+            <h3>Competency Completion</h3>
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="stats-content">
+            <span class="stats-number" id="competency-progress">--%</span>
+          </div>
+        </div>
+    
+        <div class="stats-card">
+          <div class="stats-header">
+            <h3>Active Assessors</h3>
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <div class="stats-content">
+            <span class="stats-number" id="total-assessors">--</span>
+          </div>
+        </div>
+    
+        <div class="stats-card">
+          <div class="stats-header">
+            <h3>Modules in Progress</h3>
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <div class="stats-content">
+            <span class="stats-number" id="modules-progress">--</span>
+          </div>
+        </div>
+      </section>
+    
+      <section class="dashboard-charts">
+        <div class="chart-card">
+          <h3>Enrollment by Program</h3>
+          <canvas id="enrollmentChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Competency Achievement</h3>
+          <canvas id="competencyChart"></canvas>
+        </div>
+      </section>
+    
+      <section class="recent-activity">
+        <h2>System Activity Log</h2>
+        <ul class="activity-list" id="activity-list">
+          <!-- Populated by JS -->
+        </ul>
+      </section>
+    </main>
+    
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/portal/admin/admin.js"></script>
+</body>
+</html>

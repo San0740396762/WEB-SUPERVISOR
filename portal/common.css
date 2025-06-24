@@ -1,0 +1,63 @@
+:root {
+  --university-navy: #0a2240;
+  --university-gold: #c5a900;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --bg-gray-50: #f8fafc;
+  --bg-gray-100: #f1f5f9;
+  --bg-white: #ffffff;
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius: 0.5rem;
+  --sidebar-width: 240px;
+  --sidebar-collapsed-width: 70px;
+}
+
+.read-notification {
+  opacity: 0.6;
+  background-color: var(--bg-gray-50);
+}
+.read-notification h3,
+.read-notification p,
+.read-notification span {
+  color: var(--text-muted);
+}
+
+#notification-popup {
+  z-index: 10000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+}
+
+.notifications-button {
+  position: relative;
+  color: white;
+  background: var(--university-navy);
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%; /* Ensures the button is a perfect circle */
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the content inside the circle */
+}
+
+.notification-count{
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background-color: var(--university-gold);
+  color: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the count inside the circle */
+  font-size: 0.875rem;
+}

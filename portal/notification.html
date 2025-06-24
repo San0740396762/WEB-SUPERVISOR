@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --university-navy: #0a2240;
+      --university-gold: #c5a900;
+      --text-primary: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --bg-gray-50: #f8fafc;
+      --bg-white: #ffffff;
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --radius: 0.5rem;
+    }
+    .read-notification {
+      opacity: 0.6;
+      background-color: var(--bg-gray-50);
+    }
+    .read-notification h3,
+    .read-notification p,
+    .read-notification span {
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body class="bg-[var(--bg-gray-50)] p-6">
+  <div class="max-w-2xl mx-auto bg-[var(--bg-white)] rounded-[var(--radius)] shadow-[var(--shadow)]">
+    <!-- Header -->
+    <div class="flex items-center justify-between p-4 border-b border-[var(--border-color)]">
+      <h2 class="text-xl font-bold text-[var(--text-primary)]">All Notifications</h2>
+      <button 
+        id="mark-all-read"
+        class="px-3 py-1.5 text-sm bg-[var(--university-gold)] text-[var(--university-navy)] rounded-[var(--radius)] hover:opacity-90 transition-opacity"
+      >
+        Mark All as Read
+      </button>
+    </div>
+
+    <!-- Notifications List -->
+    <div id="notifications-list" class="max-h-[60vh] overflow-y-auto">
+      <!-- Notification items will be inserted here -->
+      <div class="notification-item-template hidden p-4 border-b border-[var(--border-color)] hover:bg-[var(--bg-gray-50)] transition-colors">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="font-medium text-[var(--text-primary)]"></h3>
+          <button class="mark-read-btn px-2 py-1 text-xs bg-transparent border border-[var(--university-navy)] text-[var(--university-navy)] rounded-[var(--radius)] hover:bg-[var(--university-navy)] hover:text-white transition-colors">
+            Mark Read
+          </button>
+        </div>
+        <p class="text-sm text-[var(--text-muted)] mb-2"></p>
+        <span class="text-xs text-[var(--text-muted)]"></span>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden p-8 text-center">
+      <p class="text-[var(--text-muted)]">No new notifications</p>
+    </div>
+  </div>
+
+  <script>
+    // LocalStorage helper functions
+    function getReadNotifications() {
+      return JSON.parse(localStorage.getItem('readNotifications') || '[]');
+    }
+
+    function saveReadNotification(id) {
+      const read = getReadNotifications();
+      if (!read.includes(id)) {
+        read.push(id);
+        localStorage.setItem('readNotifications', JSON.stringify(read));
+      }
+    }
+
+    function markAllNotificationsRead(ids) {
+      localStorage.setItem('readNotifications', JSON.stringify(ids));
+    }
+
+    async function fetchAllNotifications() {
+      try {
+        const res = await fetch('https://binarywizard.pythonanywhere.com/api/admin/broadcasts');
+        const data = await res.json();
+        renderNotifications(data);
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+      }
+    }
+
+    function renderNotifications(notifications) {
+      const container = document.getElementById('notifications-list');
+      const template = document.querySelector('.notification-item-template');
+      const emptyState = document.getElementById('empty-state');
+      const readNotifications = getReadNotifications();
+
+      container.innerHTML = '';
+
+      if (notifications.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      notifications.forEach(notification => {
+        const clone = template.cloneNode(true);
+        clone.classList.remove('notification-item-template', 'hidden');
+        clone.dataset.id = notification.id;
+        
+        // Check if notification is read
+        const isRead = readNotifications.includes(notification.id);
+        if (isRead) {
+          clone.classList.add('read-notification');
+          clone.querySelector('.mark-read-btn').textContent = 'Read';
+          clone.querySelector('.mark-read-btn').disabled = true;
+        }
+
+        clone.querySelector('h3').textContent = notification.title;
+        clone.querySelector('p').textContent = notification.message;
+        clone.querySelector('span').textContent = new Date(notification.created_at).toLocaleDateString();
+        
+        clone.querySelector('.mark-read-btn').onclick = () => {
+          if (!isRead) {
+            clone.classList.add('read-notification');
+            clone.querySelector('.mark-read-btn').textContent = 'Read';
+            clone.querySelector('.mark-read-btn').disabled = true;
+            markNotificationAsRead(notification.id);
+          }
+        };
+
+        container.appendChild(clone);
+      });
+    }
+
+    function markNotificationAsRead(notificationId) {
+      console.log(`Marking notification ${notificationId} as read`);
+      saveReadNotification(notificationId);
+    }
+
+    document.getElementById('mark-all-read').onclick = () => {
+      const notifications = Array.from(document.querySelectorAll('[data-id]'));
+      const notificationIds = notifications.map(n => n.dataset.id);
+      
+      notifications.forEach(notification => {
+        notification.classList.add('read-notification');
+        notification.querySelector('.mark-read-btn').textContent = 'Read';
+        notification.querySelector('.mark-read-btn').disabled = true;
+      });
+      
+      markAllNotificationsRead(notificationIds);
+      console.log('Marked all notifications as read');
+    };
+
+    // Initial load
+    window.onload = fetchAllNotifications;
+  </script>
+</body>
+</html>

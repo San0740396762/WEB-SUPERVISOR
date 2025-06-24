@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+    .nav-tabs{
+        width: 100%;
+        display: flex;
+    }
+    .tab-link span {
+        display: none;
+    }
+    .tab-link {
+        padding: 0 2rem; /* Optional: better spacing when only icons are visible */
+    }
+}

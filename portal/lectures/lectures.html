@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scholar Central - Admin Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar" id="lecturer-sidebar">
+      <div class="sidebar-header">
+        <h1 class="logo">Taveta <span>Lecturer</span></h1>
+        <button id="sidebar-toggle" class="sidebar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    
+      <div class="sidebar-content">
+        <ul class="nav-links">
+          <li class="nav-item active">
+            <a href="index.html" class="nav-link">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="my-courses.html" class="nav-link">
+              <i class="fas fa-book"></i>
+              <span>My Courses</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="attendance.html" class="nav-link">
+              <i class="fas fa-user-check"></i>
+              <span>Attendance</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="assignments.html" class="nav-link">
+              <i class="fas fa-tasks"></i>
+              <span>Assignments</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="gradebook.html" class="nav-link">
+              <i class="fas fa-clipboard-list"></i>
+              <span>Grades</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="resources.html" class="nav-link">
+              <i class="fas fa-folder-open"></i>
+              <span>Materials</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    
+      <div class="sidebar-footer">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="profile.html" class="nav-link">
+              <i class="fas fa-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" id="logout-button" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+        
+
+    <main class="main-content">
+      <header class="header">
+        <h1>Admin Dashboard</h1>
+        <div class="header-actions">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search...">
+          </div>
+          <button class="notifications-button">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dashboard-grid">
+        <div class="stats-card">
+          <div class="stats-header">
+            <h3>Total Students</h3>
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stats-content">
+            <span class="stats-number">2,543</span>
+            <span class="stats-trend positive">
+              <i class="fas fa-arrow-up"></i>
+              12% from last semester
+            </span>
+          </div>
+        </div>
+
+        <div class="stats-card">
+          <div class="stats-header">
+            <h3>Active Courses</h3>
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="stats-content">
+            <span class="stats-number">156</span>
+            <span class="stats-trend">
+              Current Semester
+            </span>
+          </div>
+        </div>
+
+        <div class="stats-card">
+          <div class="stats-header">
+            <h3>Average GPA</h3>
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="stats-content">
+            <span class="stats-number">3.42</span>
+            <span class="stats-trend positive">
+              <i class="fas fa-arrow-up"></i>
+              0.2 from last semester
+            </span>
+          </div>
+        </div>
+
+        <div class="stats-card">
+          <div class="stats-header">
+            <h3>Resource Usage</h3>
+            <i class="fas fa-file"></i>
+          </div>
+          <div class="stats-content">
+            <span class="stats-number">8,729</span>
+            <span class="stats-trend">
+              Downloads this month
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-charts">
+        <div class="chart-card">
+          <h3>Enrollment Trends</h3>
+          <div id="enrollment-chart" class="chart"></div>
+        </div>
+        
+        <div class="chart-card">
+          <h3>Grade Distribution</h3>
+          <div id="grades-chart" class="chart"></div>
+        </div>
+      </div>
+
+      <div class="recent-activity">
+        <h2>Recent Activity</h2>
+        <div class="activity-list" id="activity-list">
+          <!-- Activity items will be populated by JavaScript -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+/* Base navigation styles */
+#navbarMenu {
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    will-change: opacity, transform;
+}
+
+/* When active (e.g., toggled open) */
+#navbarMenu.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Dropdown menu base state (hidden) */
+.dropdown-menu {
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    will-change: opacity, transform;
+}
+
+/* Shown dropdown menu */
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Optional: Smooth fade-in for scroll animation elements */
+.animate-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.animate-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Lightbox animation (optional) */
+#gallery-lightbox {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+#gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}

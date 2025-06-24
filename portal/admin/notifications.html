@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - Taveta TVC</title>
+  <link rel="stylesheet" href="/portal/admin/styles.css">
+  <link rel="stylesheet" href="/portal/admin/user-management.css">
+  <link rel="stylesheet" href="/portal/admin/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/portal/admin/form.css"> 
+  <link rel="stylesheet" href="/portal/admin/tables.css">
+</head>
+<body>
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h1 class="logo">Taveta <span>Admin</span></h1>
+      <button id="sidebar-toggle" class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  
+    <div class="sidebar-content">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="/portal/admin/index.html" class="nav-link">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/portal/admin/user-management.html" class="nav-link">
+            <i class="fas fa-users-cog"></i>
+            <span>User Management</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/portal/admin/course-program.html" class="nav-link">
+            <i class="fas fa-book-reader"></i>
+            <span>Courses & Programs</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/portal/admin/results-performance.html" class="nav-link">
+            <i class="fas fa-check-double"></i>
+            <span>Results Performance</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a href="/portal/admin/notifications.html" class="nav-link">
+            <i class="fas fa-bullhorn"></i>
+            <span>Broadcast</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="sidebar-footer">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="/portal/admin/profile.html" class="nav-link">
+            <i class="fas fa-user-cog"></i>
+            <span>Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" id="logout-button" class="nav-link">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <header class="header">
+      <h1>Broadcast Notifications</h1>
+      <div class="header-actions">
+        <input type="text" id="search-input" placeholder="Search by student name or course...">
+        <button id="new-broadcast" class="primary-btn"><i class="fas fa-plus"></i></button>
+      </div>
+    </header>
+
+    <section class="broadcast-form" hidden>
+      <form id="broadcast-form">
+        <div class="form-group">
+          <label for="broadcast-title">Title <span style="color: red;">*</span></label>
+          <input type="text" id="broadcast-title" placeholder="Enter title" required>
+        </div>
+        <div class="form-group">
+          <label for="broadcast-message">Message <span style="color: red;">*</span></label>
+          <textarea id="broadcast-message" placeholder="Enter message to broadcast" required></textarea>
+        </div>
+        <!--doc upload-->
+        <div class="form-group">
+          <label for="document">Upload Document (optional)</label>
+          <input type="file" id="document" accept=".pdf, .doc, .docx, .ppt, .pptx">
+        </div>
+        <div class="form-group">
+          <label for="recipient">Recipient <span style="color: red;">*</span></label>
+          <select id="recipient" required>
+            <option value="">Select Recipients</option>
+            <option value="all">All Students</option>
+            <option value="competent">Competent Students</option>
+            <option value="nyc">Not Yet Competent</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="primary-btn">Send</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="broadcast-history">
+      <h2>Broadcast History</h2>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Message</th>
+            <th>Recipient</th>
+            <th>Date Sent</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="broadcast-history-body">
+          <!-- Broadcast entries will be dynamically added here -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/portal/admin/toggle.js"></script>
+
+  <script>
+    document.getElementById('logout-button').addEventListener('click', function() {
+      localStorage.removeItem('currentUser');
+      window.location.href = '/portal/admin/login.html';
+    });
+    document.getElementById('new-broadcast').addEventListener('click', function() {
+      const form = document.querySelector('.broadcast-form');
+      form.hidden = !form.hidden; // Toggle visibility of the form
+      const buttonIcon = document.querySelector('#new-broadcast i');
+      if (!form.hidden) {
+      document.getElementById('broadcast-form').reset(); // Reset the form when shown
+      buttonIcon.classList.remove('fa-plus');
+      buttonIcon.classList.add('fa-times'); // Change icon to times
+      } else {
+      buttonIcon.classList.remove('fa-times');
+      buttonIcon.classList.add('fa-plus'); // Change icon to plus
+      }
+    });
+    async function loadBroadcastHistory() {
+      const res = await fetch('https://binarywizard.pythonanywhere.com/api/admin/broadcasts');
+      const data = await res.json();
+      renderBroadcastHistory(data);
+    }
+
+    function renderBroadcastHistory(data) {
+      document.getElementById('broadcast-history-body').innerHTML = data.map(broadcast => `
+        <tr>
+          <td>${broadcast.message}</td>
+          <td>${broadcast.audience}</td>
+          <td>${broadcast.created_at}</td>
+          <td>
+            <button class="primary-btn" onclick="editBroadcast('${broadcast.id}')"><i class="fas fa-edit"></i></button>
+            <button class="secondary-btn" onclick="deleteBroadcast('${broadcast.id}')"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function sendBroadcast(event) {
+      event.preventDefault();
+      const title = document.getElementById('broadcast-title').value;
+      const message = document.getElementById('broadcast-message').value;
+      const recipient = document.getElementById('recipient').value;
+      const file = document.getElementById('document').files[0];
+      const user = JSON.parse(localStorage.getItem('currentUser'));
+      const id = user.id;
+      const creator_id = user.id;
+      const audience = document.getElementById('recipient').value;
+
+      if (!message || !recipient) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const res = await fetch('https://binarywizard.pythonanywhere.com/api/admin/broadcasts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title,
+          message,
+          recipient,
+          document: file ? await file.text() : null, // Assuming the API accepts the file as text for simplicity
+          creator_id,
+          audience
+        })
+      });
+
+      if (res.ok) {
+        loadBroadcastHistory();
+        document.getElementById('broadcast-form').reset();
+      } else {
+        alert('Failed to send broadcast.');
+      }
+    }
+
+    async function deleteBroadcast(id) {
+      const res = await fetch(`https://binarywizard.pythonanywhere.com/api/admin/broadcasts/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (res.ok) {
+        loadBroadcastHistory();
+      } else {
+        alert('Failed to delete broadcast.');
+      }
+    }
+
+    document.getElementById('broadcast-form').addEventListener('submit', sendBroadcast);
+
+    loadBroadcastHistory();
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<head>
+  <link rel="stylesheet" href="navbar.css"> 
+</head>
+<body>
+  <!-- navbar.html -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-content"> 
+        <div class="navbar-brand">
+          <a href="index.html" class="navbar-logo" data-page="index.html">
+          <img src="images/Taveta_logo.png" alt="Taveta TVC Logo" id="tvcLogo" />
+          </a>
+        </div>
+        <a href="index.html" class="navbar-logo" data-page="index.html">
+          <div class="logo-text">Taveta Techical & <br><span>Vocational College</span></div>
+        </a>
+      
+        <div class="navbar-menu" id="navbarMenu">
+          <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="about.html" class="nav-link dropdown-toggle" data-page="about.html">
+            About Us <i class="icon-chevron-down"></i>
+            </a>
+            <div class="dropdown-menu">
+            <a href="about.html#history" class="dropdown-item" data-page="about/history.html">History</a>
+            <a href="about.html#mission" class="dropdown-item" data-page="about/mission.html">Mission & Vision</a>
+            <a href="about.html#leadership" class="dropdown-item" data-page="about/leadership.html">Leadership</a>
+            <a href="about.html#campus" class="dropdown-item" data-page="about/campus.html">Campus Locations</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="academics.html" class="nav-link dropdown-toggle" data-page="academics.html">
+            Academics <i class="icon-chevron-down"></i>
+            </a>
+            <div class="dropdown-menu">
+            <a href="academics.html#courses" class="dropdown-item" data-page="academics/faculties.html">Courses</a>
+            <a href="academics.html#departments" class="dropdown-item" data-page="academics/departments.html">Departments</a>
+            <a href="academics.html#programs" class="dropdown-item" data-page="academics/programs.html">Programs</a>
+            <a href="academics.html#calendar" class="dropdown-item" data-page="academics/calendar.html">Academic Calendar</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="admissions.html" class="nav-link dropdown-toggle" data-page="admissions.html">
+            Admissions <i class="icon-chevron-down"></i>
+            </a>
+            <div class="dropdown-menu">
+            <a href="admissions.html#undergraduate" class="dropdown-item" data-page="admissions/undergraduate.html">I.V.Q (level 3)</a>
+            <a href="admissions.html#postgraduate" class="dropdown-item" data-page="admissions/postgraduate.html">Certificate (level 4)</a>
+            <a href="admissions.html#international" class="dropdown-item" data-page="admissions/international.html">H. Diploma (level 5)</a>
+            <a href="admissions.html#scholarships" class="dropdown-item" data-page="admissions/scholarships.html">P. Diploma (level 6)</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="student-life.html" class="nav-link dropdown-toggle" data-page="student-life.html">
+            Student Life <i class="icon-chevron-down"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="research.html" class="nav-link dropdown-toggle" data-page="research.html">
+            Research <i class="icon-chevron-down"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle">
+            News & Events <i class="icon-chevron-down"></i>
+            </a>
+            <div class="dropdown-menu">
+            <a href="news.html" class="dropdown-item">News</a>
+            <a href="events.html" class="dropdown-item">Events</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+          </li>
+          <li class="nav-item navbar-actions">
+            <a href="portal.html" class="btn-primary" data-page="portal.html">Student Portal</a>
+          </li>
+          </ul>
+          
+        </div>
+      
+        <div class="navbar-actions">
+          <button class="navbar-toggler" id="navbarToggler">
+          <span class="toggler-icon"></span>
+          <span class="toggler-icon"></span>
+          <span class="toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <script>
+  // Mobile navigation toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.getElementById('navbarToggler');
+    const navbarMenu = document.getElementById('navbarMenu');
+    
+    if (navbarToggler && navbarMenu) {
+    navbarToggler.addEventListener('click', function() {
+      navbarMenu.classList.toggle('active');
+    });
+    }
+    
+    // Mobile dropdown toggle
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      if (window.innerWidth < 768) {
+      e.preventDefault();
+      const dropdownMenu = this.nextElementSibling;
+      dropdownMenu.classList.toggle('show');
+      }
+    });
+    });
+    
+    // Close mobile menu on window resize
+    window.addEventListener('resize', function() {
+    if (window.innerWidth >= 768 && navbarMenu.classList.contains('active')) {
+      navbarMenu.classList.remove('active');
+      
+      // Hide all opened dropdown menus
+      document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+      menu.classList.remove('show');
+      });
+    }
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+    if (
+      window.innerWidth < 768 &&
+      !e.target.closest('.navbar-toggler') &&
+      !e.target.closest('.navbar-menu') &&
+      navbarMenu.classList.contains('active')
+    ) {
+      navbarMenu.classList.remove('active');
+    }
+    });
+  });
+  </script>
+</body>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Public Pages -->
+  <url><loc>https://taveta-tvc.vercel.app/</loc></url>
+  <url><loc>https://taveta-tvc.vercel.app/about.html</loc></url>
+  <url><loc>https://taveta-tvc.vercel.app/academics.html</loc></url>
+  <url><loc>https://taveta-tvc.vercel.app/admissions.html</loc></url>
+  <url><loc>https://taveta-tvc.vercel.app/contact.html</loc></url>
+  <url><loc>https://taveta-tvc.vercel.app/events.html</loc></url>
+  <url><loc>https://taveta-tvc.vercel.app/news.html</loc></url>
+  <url><loc>https://taveta-tvc.vercel.app/research.html</loc></url>
+  <url><loc>https://taveta-tvc.vercel.app/student-life.html</loc></url>
+
+  <!-- Optional: Public portal pages -->
+  <url><loc>https://taveta-tvc.vercel.app/portal/auth.html</loc></url>
+</urlset>

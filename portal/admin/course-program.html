@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - Taveta TVC</title>
+  <link rel="stylesheet" href="/portal/admin/styles.css">
+  <link rel="stylesheet" href="/portal/admin/user-management.css">
+  <link rel="stylesheet" href="/portal/admin/header.css">
+  <link rel="stylesheet" href="/portal/admin/tables.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h1 class="logo">Taveta <span>Admin</span></h1>
+      <button id="sidebar-toggle" class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="sidebar-content">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="user-management.html" class="nav-link">
+            <i class="fas fa-users-cog"></i>
+            <span>User Management</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a href="course-program.html" class="nav-link">
+            <i class="fas fa-book-reader"></i>
+            <span>Courses & Programs</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="results-performance.html" class="nav-link">
+            <i class="fas fa-check-double"></i>
+            <span>Results Performance</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="notifications.html" class="nav-link">
+            <i class="fas fa-bullhorn"></i>
+            <span>Broadcast</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar-footer">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="profile.html" class="nav-link">
+            <i class="fas fa-user-cog"></i>
+            <span>Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" id="logout-button" class="nav-link">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main class="main-content">
+    <header class="header">
+      <h1>Course & Program Management</h1>
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Search courses...">
+        </div>
+        <select id="level-filter">
+          <option value="">All Levels</option>
+          <script>
+          const levels = ["L1", "L2", "L3", "L4", "L5", "L6"];
+          const levelFilter = document.getElementById('level-filter');
+          levels.forEach(level => {
+            const option = document.createElement('option');
+            option.value = level;
+            option.textContent = level;
+            levelFilter.appendChild(option);
+          });
+          </script>
+        </select>
+        <button class="primary-btn" id="add-course-btn">Add Course</button>
+      </div>
+    </header>
+  
+    <section>
+      <table class="user-table course-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Code</th>
+            <th>Level</th>
+            <th>Department</th>
+            <th>Duration</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="course-table-body">
+          <!-- JS Injected Rows -->
+        </tbody>
+      </table>
+    </section>
+  
+    <div id="course-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="modal-title">Add Course</h2>
+        <form id="course-form">
+          <input type="hidden" id="course-id" />
+          <input type="text" id="title" placeholder="Course Title" required />
+          <input type="text" id="code" placeholder="Course Code" required />
+          <select id="level" required>
+            <option value="">Select Level</option>
+            <option value="L1">LEVEL 1</option>
+            <option value="L2">LEVEL 2</option>
+            <option value="L3">LEVEL 3</option>
+            <option value="L4">LEVEL 4</option>
+            <option value="L5">LEVEL 5</option>
+            <option value="L6">LEVEL 6</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="text" id="other-level" placeholder="Enter custom level" style="display: none; margin-top: 0.5rem;" />
+          <input type="text" id="department" placeholder="Department" required />
+          <input type="number" id="duration" placeholder="Duration (months)" required />
+          <textarea id="description" placeholder="Description" rows="3"></textarea>
+          <label><input type="checkbox" id="is-active" checked /> Active</label>
+          <div class="modal-actions">
+            <button type="submit">Save</button>
+            <button type="button" id="close-modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="toggle.js"></script>
+  
+  <script>
+    const courseModal = document.getElementById('course-modal');
+    const courseForm = document.getElementById('course-form');
+    const modalTitle = document.getElementById('modal-title');
+    const courseTable = document.getElementById('course-table-body');
+    const addCourseBtn = document.getElementById('add-course-btn');
+    const closeModal = document.getElementById('close-modal');
+    const levelSelect = document.getElementById('level');
+    const otherLevelInput = document.getElementById('other-level');
+  
+    let editingId = null;
+  
+    levelSelect.addEventListener('change', () => {
+      otherLevelInput.style.display = levelSelect.value === 'Other' ? 'block' : 'none';
+    });
+  
+    async function loadCourses() {
+      const res = await fetch('https://binarywizard.pythonanywhere.com/api/admin/course-programs');
+      const data = await res.json();
+      renderCourses(data);
+    }
+  
+    function renderCourses(courses) {
+      const levelFilter = document.getElementById('level-filter').value.toLowerCase();
+      const search = document.getElementById('search-input').value.toLowerCase();
+      const filtered = courses.filter(c =>
+        (!levelFilter || c.level.toLowerCase() === levelFilter || (levelFilter === 'other' && !["L1", "L2", "L3", "L4", "L5", "L6"].includes(c.level.toLowerCase()))) &&
+        (c.title.toLowerCase().includes(search) || c.code.toLowerCase().includes(search))
+      );
+  
+      courseTable.innerHTML = filtered.map(c => `
+        <tr>
+          <td>${c.title}</td>
+          <td>${c.code}</td>
+          <td>${c.level}</td>
+          <td>${c.department}</td>
+          <td>${c.duration} months</td>
+          <td>
+            <button class="primary-btn" onclick="editCourse(${c.id})">Edit</button>
+            <button class="secondary-btn" onclick="deleteCourse(${c.id})">Delete</button>
+          </td>
+        </tr>`).join('');
+    }
+  
+    window.editCourse = async (id) => {
+      const res = await fetch(`https://binarywizard.pythonanywhere.com/api/admin/course-programs`);
+      const data = await res.json();
+      const course = data.find(c => c.id === id);
+      if (!course) return;
+  
+      editingId = id;
+      modalTitle.textContent = 'Edit Course';
+      courseForm.title.value = course.title;
+      courseForm.code.value = course.code;
+      otherLevelInput.value = course.level;
+      if (["L1", "L2", "L3", "L4", "L5", "L6"].includes(course.level)) {
+        courseForm.level.value = course.level;
+        otherLevelInput.style.display = 'none';
+      } else {
+        courseForm.level.value = "Other";
+        otherLevelInput.style.display = 'block';
+        otherLevelInput.value = course.level;
+      }
+      courseForm.department.value = course.department;
+      courseForm.duration.value = course.duration;
+      courseForm.description.value = course.description;
+      courseForm['is-active'].checked = course.is_active;
+      courseModal.classList.remove('hidden');
+    };
+  
+    window.deleteCourse = async (id) => {
+      if (!confirm('Delete this course?')) return;
+      await fetch(`https://binarywizard.pythonanywhere.com/api/admin/course-programs/${id}`, { method: 'DELETE' });
+      loadCourses();
+    };
+  
+    courseForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const levelVal = levelSelect.value === 'Other' ? otherLevelInput.value.trim() : levelSelect.value;
+  
+      const payload = {
+        title: courseForm.title.value,
+        code: courseForm.code.value,
+        level: levelVal,
+        department: courseForm.department.value,
+        duration: parseInt(courseForm.duration.value),
+        description: courseForm.description.value,
+        is_active: courseForm['is-active'].checked
+      };
+  
+      const url = editingId ? `https://binarywizard.pythonanywhere.com/api/admin/course-programs/${editingId}` : 'https://binarywizard.pythonanywhere.com/api/admin/course-programs';
+      const method = editingId ? 'PUT' : 'POST';
+  
+      await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+  
+      courseModal.classList.add('hidden');
+      courseForm.reset();
+      editingId = null;
+      loadCourses();
+    };
+  
+    addCourseBtn.onclick = () => {
+      modalTitle.textContent = 'Add Course';
+      courseForm.reset();
+      editingId = null;
+      otherLevelInput.style.display = 'none';
+      courseModal.classList.remove('hidden');
+    };
+  
+    closeModal.onclick = () => {
+      courseModal.classList.add('hidden');
+    };
+  
+    document.getElementById('search-input').oninput = loadCourses;
+    document.getElementById('level-filter').onchange = loadCourses;
+  
+    loadCourses();
+  </script>  
+</body>
+</html>

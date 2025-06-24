@@ -1,0 +1,163 @@
+<!-- suggestions.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suggestions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-semibold">Suggestions Management</h1>
+            <button onclick="logout()" 
+                class="text-red-600 hover:text-red-700">
+                Logout
+            </button>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="flex gap-4 mb-6">
+            <select id="statusFilter" class="px-4 py-2 border rounded-md">
+                <option value="All">All Statuses</option>
+                <option value="New">New</option>
+                <option value="Handled">Handled</option>
+            </select>
+            <select id="categoryFilter" class="px-4 py-2 border rounded-md">
+                <option value="All">All Categories</option>
+                <!-- Categories will be populated dynamically -->
+            </select>
+            <button onclick="exportCSV()" 
+                class="ml-auto bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                Export CSV
+            </button>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-sm font-semibold">ID</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold">Category</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold">Content</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold">Status</th>
+                        <th class="px-6 py-3 text-left text-sm font-semibold">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="suggestionsBody" class="divide-y divide-gray-200">
+                    <!-- Rows will be injected here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function fetchSuggestions() {
+            const status = document.getElementById('statusFilter').value;
+            const category = document.getElementById('categoryFilter').value;
+            
+            const res = await fetch(`/api/suggestions?status=${status}&category=${category}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            
+            if (!res.ok) return;
+            
+            const suggestions = await res.json();
+            renderSuggestions(suggestions);
+        }
+
+        function renderSuggestions(suggestions) {
+            const tbody = document.getElementById('suggestionsBody');
+            tbody.innerHTML = '';
+            
+            suggestions.forEach(suggestion => {
+                const row = `
+                    <tr>
+                        <td class="px-6 py-4">${suggestion.id}</td>
+                        <td class="px-6 py-4">${suggestion.category}</td>
+                        <td class="px-6 py-4">${suggestion.content}</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 text-sm rounded-full 
+                                ${suggestion.status === 'New' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'}">
+                                ${suggestion.status}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <button onclick="toggleStatus(${suggestion.id}, '${suggestion.status}')"
+                                class="text-blue-600 hover:text-blue-700">
+                                Mark as ${suggestion.status === 'New' ? 'Handled' : 'New'}
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        async function toggleStatus(id, currentStatus) {
+            const newStatus = currentStatus === 'New' ? 'Handled' : 'New';
+            
+            const res = await fetch(`/api/suggestions/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: newStatus })
+            });
+            
+            if (res.ok) {
+                fetchSuggestions();
+                alert('Status updated');
+            }
+        }
+
+        async function exportCSV() {
+            const res = await fetch('/api/suggestions/export', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            
+            if (res.ok) {
+                const blob = await res.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'suggestions-export.csv';
+                a.click();
+            }
+        }
+
+        function applyFilters() {
+            const statusFilter = document.getElementById('statusFilter').value;
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            
+            // Apply filters
+            filteredSuggestions = [...suggestions];
+            
+            if (statusFilter !== 'All') {
+                filteredSuggestions = filteredSuggestions.filter(s => s.status === statusFilter);
+            }
+            
+            if (categoryFilter !== 'All') {
+                filteredSuggestions = filteredSuggestions.filter(s => s.category === categoryFilter);
+            }
+            
+            // Render filtered suggestions
+            renderSuggestions();
+        }
+    
+
+        // Initialize
+        if (!localStorage.getItem('token')) {
+            window.location.href = 'login.html';
+        } else {
+            fetchSuggestions();
+        }
+    </script>
+</body>
+</html>

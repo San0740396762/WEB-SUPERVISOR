@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Portal Taveta TVC</title>
+  <link rel="icon" href="/portal/images/Taveta_logo.png" type="image/png" />
+  <link rel="stylesheet" href="/portal/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="manifest" href="/portal/manifest.json">
+  <meta name="theme-color" content="#1e293b">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/portal/sw.js');
+    }
+  </script>
+</head>
+<body>
+  <button id="installBtn" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 9999;
+  display: none;
+">
+  📲 Install App
+</button>
+
+  <div class="app-container">
+    <!-- Sidebar navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h1 class="logo">Taveta <span>TVC</span></h1>
+        <button id="sidebar-toggle" class="sidebar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      
+      <div class="sidebar-content">
+        <ul class="nav-links">
+          <li class="nav-item active">
+            <a href="/portal/index" class="nav-link">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/courses" class="nav-link">
+              <i class="fas fa-book"></i>
+              <span>Units</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/schedule" class="nav-link">
+              <i class="fas fa-calendar"></i>
+              <span>Schedule</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/grades" class="nav-link">
+              <i class="fas fa-chart-bar"></i>
+              <span>Grades</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/resources" class="nav-link">
+              <i class="fas fa-book-open"></i>
+              <span>Resources</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/suggest" class="nav-link">
+              <i class="fas fa-lightbulb"></i>
+              <span>Suggest</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-footer">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/portal/profile" class="nav-link">
+              <i class="fas fa-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/#" id="logout-button" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content area -->
+    <main class="main-content">
+      <header class="page-header">
+        <h1>Dashboard</h1>
+        <div class="user-info">
+          <span id="user-name">Loading...</span>
+          <div class="avatar">
+            <span id="user-initials">...</span>
+          </div>
+          <button id="notifications-button" class="notifications-button" aria-label="Notifications">
+            <i class="fas fa-bell"></i>
+            <span id="notification-count" class="notification-count">0</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- Welcome Card -->
+        <div class="card welcome-card">
+          <div class="welcome-content">
+            <div>
+              <h2 class="welcome-title">Welcome back, <span id="welcome-name">Student</span>!</h2>
+              <p class="welcome-message">It's Monday, April 15, 2025. You have 3 classes today.</p>
+            </div>
+            <div class="welcome-actions">
+              <a href="/portal/schedule"><button class="button button-secondary">View Schedule</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="main-column">
+            <h2 class="section-title">My Units</h2>
+            <div class="courses-grid">
+              <!-- Course cards will be inserted here by JavaScript -->
+            </div>
+          </div>
+          
+          <div class="side-column">
+            <div class="card">
+              <h3 class="card-title">Upcoming Events</h3>
+              <div class="events-list">
+                <!-- Events will be inserted here by JavaScript -->
+              </div>
+            </div>
+            
+            <div class="card">
+              <h3 class="card-title">Quick Links</h3>
+              <div class="links-list">
+                <a href="/portal/#" class="quick-link">
+                  <i class="fas fa-graduation-cap"></i>
+                  <span>Academic Calendar</span>
+                </a>
+                <a href="/portal/#" class="quick-link">
+                  <i class="fas fa-building"></i>
+                  <span>Campus Map</span>
+                </a>
+                <a href="/portal/#" class="quick-link">
+                  <i class="fas fa-book"></i>
+                  <span>Library Resources</span>
+                </a>
+                <a href="/portal/#" class="quick-link">
+                  <i class="fas fa-calendar-check"></i>
+                  <span>Advising Appointment</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  
+  <script src="/portal/dashboard.js"></script>
+  <script src="/portal/yot.js"></script>
+  <script src="/portal/notify.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

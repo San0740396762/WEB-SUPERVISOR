@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>units - Portal Taveta TVC</title>
+  <link rel="stylesheet" href="/portal/courses.css">
+  <link rel="stylesheet" href="/portal/common.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="theme-color" content="#1e293b">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/portal/sw.js');
+    }
+  </script>
+</head>
+<body>
+  <button id="installBtn" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 9999;
+  display: none;
+">
+  📲 Install App
+</button>
+
+  <div class="app-container">
+    <!-- Sidebar navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h1 class="logo">Taveta <span>TVC</span></h1>
+        <button id="sidebar-toggle" class="sidebar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      
+      <div class="sidebar-content">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/portal/index" class="nav-link">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="/portal/courses" class="nav-link">
+              <i class="fas fa-book"></i>
+              <span>Units</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/schedule" class="nav-link">
+              <i class="fas fa-calendar"></i>
+              <span>Schedule</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/grades" class="nav-link">
+              <i class="fas fa-chart-bar"></i>
+              <span>Grades</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/resources" class="nav-link">
+              <i class="fas fa-book-open"></i>
+              <span>Resources</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/suggest" class="nav-link">
+              <i class="fas fa-lightbulb"></i>
+              <span>Suggest</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-footer">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/portal/profile" class="nav-link">
+              <i class="fas fa-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/#" id="logout-button" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content area -->
+    <main class="main-content">
+      <header class="page-header">
+        <h1>My units</h1>
+        <div class="user-info">
+          <span id="user-name">Loading...</span>
+          <div class="avatar">
+            <span id="user-initials">...</span>
+          </div>
+          <button id="notifications-button" class="notifications-button button" aria-label="Notifications">
+            <i class="fas fa-bell"></i>
+            <span id="notification-count" class="notification-count">0</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="tabs">
+          <div class="tabs-list">
+            <button class="tab-trigger active" data-tab="current">Current Semester</button>
+            <button class="tab-trigger" data-tab="past">Past units</button>
+          </div>
+
+          <div class="tab-content" id="current-tab">
+            <div class="units-layout">
+              <div class="unit-list">
+                <!-- unit cards will be inserted here by JavaScript -->
+              </div>
+              <div class="unit-details">
+                <div class="card unit-details-card">
+                  <div class="unit-header">
+                    <span id="selected-unit-code" class="unit-code">Select a unit</span>
+                    <h2 id="selected-unit-name" class="text-2xl">Select a unit to view details</h2>
+                  </div>
+                  <div class="unit-info">
+                    <!-- unit details will be inserted here by JavaScript -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content hidden" id="past-tab">
+            <div class="card empty-state">
+              <i class="fas fa-book text-gray-300 text-6xl mb-4"></i>
+              <h3 class="text-lg font-medium mb-2">No past units available</h3>
+              <p class="text-sm text-gray-500">
+                Your previous semester units will appear here once they are completed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  
+  <script src="/portal/courses.js"></script>
+  <script src="/portal/yot.js"></script>
+  <script src="/portal/notify.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

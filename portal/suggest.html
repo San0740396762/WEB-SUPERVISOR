@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suggestions - Portal Taveta TVC</title>
+  <link rel="stylesheet" href="/portal/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="theme-color" content="#1e293b">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/portal/sw.js');
+    }
+  </script>
+  <style>
+    :root {
+      --university-navy: #0a2240;
+      --university-gold: #c5a900;
+      --text-primary: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --bg-gray-50: #f8fafc;
+      --bg-gray-100: #f1f5f9;
+      --bg-white: #ffffff;
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 0.5rem;
+      --sidebar-width: 240px;
+      --sidebar-collapsed-width: 70px;
+    }
+
+    .suggestion-form {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 16px;
+      background: var(--bg-gray-50);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .anonymous-notice {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    .submit-button {
+      background-color: var(--university-gold);
+      color: var(--bg-white);
+      padding: 12px 24px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .submit-button:hover {
+      background-color: #b39400;
+    }
+  </style>
+</head>
+<body>
+  <button id="installBtn" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 9999;
+  display: none;
+">
+  📲 Install App
+</button>
+
+  <div class="app-container">
+    <!-- Sidebar navigation -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h1 class="logo">Taveta <span>TVC</span></h1>
+        <button id="sidebar-toggle" class="sidebar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      
+      <div class="sidebar-content">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/portal/index" class="nav-link">
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/courses" class="nav-link">
+              <i class="fas fa-book"></i>
+              <span>Units</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/schedule" class="nav-link">
+              <i class="fas fa-calendar"></i>
+              <span>Schedule</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/grades" class="nav-link">
+              <i class="fas fa-chart-bar"></i>
+              <span>Grades</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/resources" class="nav-link">
+              <i class="fas fa-book-open"></i>
+              <span>Resources</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="/portal/suggest" class="nav-link">
+              <i class="fas fa-lightbulb"></i>
+              <span>Suggest</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-footer">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="/portal/profile" class="nav-link">
+              <i class="fas fa-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portal/#" id="logout-button" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content area -->
+    <main class="main-content">
+      <header class="page-header">
+        <h1>Make a Suggestion</h1>
+        <div class="user-info">
+          <span id="user-name">Loading...</span>
+          <div class="avatar">
+            <span id="user-initials">...</span>
+          </div>
+          <button id="notifications-button" class="notifications-button" aria-label="Notifications">
+            <i class="fas fa-bell"></i>
+            <span id="notification-count" class="notification-count">0</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="card welcome-card">
+          <div class="welcome-content">
+            <div>
+              <h2 class="welcome-title courses-grid events-list" hidden><span id="welcome-name"></span></h2>
+              <h2 class="welcome-title">Share Your Ideas</h2>
+              <p class="welcome-message">Your feedback helps us improve. Feel free to share your suggestions anonymously.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="suggestion-form">
+          <form id="suggestionForm" onsubmit="return handleSubmit(event)">
+            <div class="form-group">
+              <label for="recipient">Who is this suggestion for?</label>
+              <select id="recipient" name="recipient" required>
+                <option value="">Select recipient</option>
+                <option value="administration">Administration</option>
+                <option value="developer">Website Developer</option>
+                <option value="faculty">Faculty</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category" name="category" required>
+                <option value="">Select category</option>
+                <option value="academic">Academic</option>
+                <option value="facilities">Facilities</option>
+                <option value="technical">Technical</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="suggestion">Your Suggestion</label>
+              <textarea id="suggestion" name="suggestion" required 
+                placeholder="Please describe your suggestion in detail..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="anonymous" name="anonymous">
+                Submit Anonymously
+              </label>
+              <p class="anonymous-notice">
+                When submitting anonymously, your identity will be completely hidden from all recipients.
+              </p>
+            </div>
+
+            <button type="submit" class="submit-button">Submit Suggestion</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      const API_URI = 'https://octoprograms.pythonanywhere.com/api';
+      const SUGGESTION_ENDPOINT = '/suggest/taveta_tvc';
+      const user = JSON.parse(localStorage.getItem('currentUser'));
+      const id = user.id;
+
+
+      
+      const formData = {
+        recipient: document.getElementById('recipient').value,
+        contact: user,
+        category: document.getElementById('category').value,
+        suggestion: document.getElementById('suggestion').value,
+        anonymous: document.getElementById('anonymous').checked
+      };
+
+      // Here you would typically send the data to your server
+      console.log('Suggestion submitted:', user, formData);
+      fetch(`${API_URI}${SUGGESTION_ENDPOINT}`, {
+          method: 'POST',
+          headers: {
+              'Authorization': 'Bearer T5jzP-7YPbGSxKtn5jFfzP0f-gf4Poam',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              // Show success message
+              const toast = document.createElement('div');
+              toast.className = 'toast';
+              toast.textContent = 'Thank you! Your suggestion has been submitted successfully.';
+              document.getElementById('toast-container').appendChild(toast);
+
+              setTimeout(() => {
+                toast.remove();
+              }, 3000);
+          } else {
+              // Show error message
+              const toast = document.createElement('div');
+              toast.className = 'toast toast-error';
+              toast.textContent = 'Error! Unable to submit your suggestion. Please try again later.';
+              document.getElementById('toast-container').appendChild(toast);
+
+              setTimeout(() => {
+                toast.remove();
+              }, 3000);
+          }
+      })
+      .catch(error => {
+          // Show error message
+          const toast = document.createElement('div');
+          toast.className = 'toast toast-error';
+          toast.textContent = 'Error! Unable to submit your suggestion. Please try again later.';
+          document.getElementById('toast-container').appendChild(toast);
+
+          setTimeout(() => {
+            toast.remove();
+          }, 3000);
+      });
+
+      // Reset form
+      event.target.reset();
+      
+      return false;
+    }
+  </script>
+  
+  <script src="/portal/dashboard.js"></script>
+  <script src="/portal/yot.js"></script>
+  <script src="/portal/notify.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

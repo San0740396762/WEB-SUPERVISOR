@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Taveta TVC</title>
+    <link rel="icon" href="images/Taveta_logo.png" type="image/png" />
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Discover Taveta Technical and Vocational College (Taveta TVC), a leading institution offering quality technical and vocational education in Kenya. Learn about our history, mission, leadership, and campus locations.">
+    <meta name="keywords" content="Taveta TVC, Technical College, Vocational Training, Taveta Kenya, Education, Mission and Vision, Leadership, Campus Locations, Technical Education, Vocational Education">
+    <meta name="author" content="Taveta Technical and Vocational College">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="About - Taveta Technical and Vocational College">
+    <meta property="og:description" content="Explore Taveta TVC's history, mission, leadership, and campus locations. A premier institution for technical and vocational education in Kenya.">
+    <meta property="og:url" content="https://tavetatvc.ac.ke/about.html">
+    <meta property="og:image" content="https://tavetatvc.ac.ke/assets/images/logo.PNG">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About - Taveta Technical and Vocational College">
+    <meta name="twitter:description" content="Learn about Taveta TVC's history, mission, leadership, and campus locations. A leading institution for technical and vocational education in Kenya.">
+    <meta name="twitter:image" content="https://tavetatvc.ac.ke/assets/images/logo.PNG">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="about-styles.css">
+    <link rel="stylesheet" href="tab.css">
+    <link rel="stylesheet" href="navbar.css">
+  </head>
+
+  <body>
+    <div class="min-h-screen flex flex-col">
+      <!-- Navbar -->
+      <nav class="navbar">
+        <div class="navbar-container">
+          <div class="navbar-content"> 
+            <div class="navbar-brand">
+              <a href="index.html" class="navbar-logo" data-page="index.html">
+              <img src="images/Taveta_logo.png" alt="Taveta TVC Logo" id="tvcLogo" />
+              </a>
+            </div>
+            <a href="index.html" class="navbar-logo" data-page="index.html">
+              <div class="logo-text">Taveta Techical & <br><span>Vocational College</span></div>
+            </a>
+          
+            <div class="navbar-menu" id="navbarMenu">
+              <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="about.html" class="nav-link dropdown-toggle" data-page="about.html">
+                About Us <i class="icon-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu">
+                <a href="about.html#history" class="dropdown-item" data-page="about/history.html">History</a>
+                <a href="about.html#mission" class="dropdown-item" data-page="about/mission.html">Mission & Vision</a>
+                <a href="about.html#leadership" class="dropdown-item" data-page="about/leadership.html">Leadership</a>
+                <a href="about.html#campus" class="dropdown-item" data-page="about/campus.html">Campus Locations</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="academics.html" class="nav-link dropdown-toggle" data-page="academics.html">
+                Academics <i class="icon-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu">
+                <a href="academics.html#courses" class="dropdown-item" data-page="academics/faculties.html">Courses</a>
+                <a href="academics.html#departments" class="dropdown-item" data-page="academics/departments.html">Departments</a>
+                <a href="academics.html#programs" class="dropdown-item" data-page="academics/programs.html">Programs</a>
+                <a href="academics.html#calendar" class="dropdown-item" data-page="academics/calendar.html">Academic Calendar</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="admissions.html" class="nav-link dropdown-toggle" data-page="admissions.html">
+                Admissions <i class="icon-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu">
+                <a href="admissions.html#undergraduate" class="dropdown-item" data-page="admissions/undergraduate.html">I.V.Q (level 3)</a>
+                <a href="admissions.html#postgraduate" class="dropdown-item" data-page="admissions/postgraduate.html">Certificate (level 4)</a>
+                <a href="admissions.html#international" class="dropdown-item" data-page="admissions/international.html">H. Diploma (level 5)</a>
+                <a href="admissions.html#scholarships" class="dropdown-item" data-page="admissions/scholarships.html">P. Diploma (level 6)</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="student-life.html" class="nav-link dropdown-toggle" data-page="student-life.html">
+                Student Life <i class="icon-chevron-down"></i>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="research.html" class="nav-link dropdown-toggle" data-page="research.html">
+                Research <i class="icon-chevron-down"></i>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle">
+                News & Events <i class="icon-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu">
+                <a href="news.html" class="dropdown-item">News</a>
+                <a href="events.html" class="dropdown-item">Events</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a href="contact.html" class="nav-link" data-page="contact.html">Contact</a>
+              </li>
+              <li class="nav-item navbar-actions">
+                <a href="portal.html" class="btn-primary" data-page="portal.html">Student Portal</a>
+              </li>
+              </ul>
+              
+            </div>
+          
+            <div class="navbar-actions">
+              <button class="navbar-toggler" id="navbarToggler">
+              <span class="toggler-icon"></span>
+              <span class="toggler-icon"></span>
+              <span class="toggler-icon"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-bg"></div>
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title fade-in">About Taveta TVC
+        </div>
+      </section>
+
+      <!-- Navigation Tabs -->
+      <div class="nav-tabs">
+        <div class="container">
+          <nav class="tabs-nav">
+            <a href="#history" class="tab-link">
+              <i data-lucide="bookmark"></i>
+              <span>History</span>
+            </a>
+            <a href="#mission" class="tab-link">
+              <i data-lucide="landmark"></i>
+            <span>Mission & Vision</span> 
+            </a>
+            <a href="#leadership" class="tab-link">
+              <i data-lucide="users"></i>
+             <span>Leadership</span> 
+            </a>
+            <a href="#campus" class="tab-link">
+              <i data-lucide="map-pin"></i>
+              <span>Campus Locations</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- History Section -->
+      <section id="history" class="section">
+        <div class="container">
+          <div class="section-grid">
+            <div class="section-content">
+              <h2 class="section-title">Our History</h2>
+              <div class="content-text">
+                <p>Established in 2016, Taveta Technical and Vocational College (Taveta TVC) was founded to provide technical and vocational training to the local community (Taveta). Starting with a modest enrollment of 50 students, the college has grown into a leading institution, equipping thousands of students with practical skills and knowledge.</p>
+                <p>Over the years, Taveta TVC has expanded its programs to meet the evolving needs of industries and communities. From its humble beginnings, the college has introduced modern facilities, diverse courses, and partnerships with key stakeholders to ensure students are prepared for the workforce.</p>
+                <p>In the 2020s, Taveta TVC embraced advancements in technology and innovation, integrating them into its curriculum to stay ahead in a rapidly changing world. The college also strengthened its focus on entrepreneurship and community development.</p>
+                <p>Today, Taveta TVC is recognized for its commitment to excellence in technical and vocational education, fostering innovation, and empowering students to contribute meaningfully to society and the economy.</p>
+              </div>
+            </div>
+            <div class="section-image">
+              <div class="image-container">
+                <img src="images/collage.jpeg" alt="Historic Campus Vista Building">
+                <div class="image-caption">
+                  <p>The original Taveta TVC building in 2016</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="milestones">
+            <h3 class="milestone-title">Key Milestones</h3>
+            <div class="milestone-list">
+              <div class="milestone">
+                <div class="milestone-year">2016</div>
+                <div class="milestone-text">Establishment of Taveta Technical and Vocational College (Taveta TVC)</div>
+              </div>
+              <div class="milestone">
+                <div class="milestone-year">2019</div>
+                <div class="milestone-text">First batch of students joined in September</div>
+              </div>
+              <div class="milestone">
+                <div class="milestone-year">2020</div>
+                <div class="milestone-text">Introduction of modern facilities and expanded programs</div>
+              </div>
+              <div class="milestone">
+                <div class="milestone-year">2022</div>
+                <div class="milestone-text">Launch of entrepreneurship and community development initiatives</div>
+              </div>
+              <div class="milestone">
+                <div class="milestone-year">2023</div>
+                <div class="milestone-text">Recognition as a leading institution in technical and vocational education</div>
+              </div>
+              <div class="milestone">
+                <div class="milestone-year">2024</div>
+                <div class="milestone-text">Implementation of advanced digital learning platforms and global partnerships</div>
+              </div>  </div>
+      </section>
+
+      <!-- Mission & Vision Section -->
+      <section id="mission" class="section bg-gray">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Mission & Vision</h2>
+            <p class="section-subtitle">Guiding our path forward with purpose and clarity</p>
+          </div>
+
+          <div class="mission-vision-grid">
+            <div class="mission-card">
+              <h3 class="card-title">Our Mission</h3>
+              <p class="card-text">Taveta TVC is dedicated to providing holistic, quality, technical and vocational education and training grounded in practical skills, research, and Biblical Christian values. <br>
+                      Our mission drives us to:</p>
+                      <ul class="card-list">
+                      <li>Deliver accessible, high-quality education that equips students with practical skills and knowledge for a dynamic world</li>
+                      <li>Engage in innovative research that addresses community and global needs</li>
+                      <li>Champion diversity, equity, and inclusion as core principles of our institution</li>
+                      <li>Empower communities through meaningful outreach, partnerships, and service</li>
+                      <li>Inspire academic excellence, creativity, and a commitment to lifelong learning</li>
+                      </ul>
+            </div>
+
+            <div class="vision-card">
+              <h3 class="card-title">Our Vision</h3>
+              <p class="card-text">Taveta TVC aspires to be a leading center of academic excellence in technical and vocational training and research, producing graduates with quality and relevant competency skills for self-reliance, industrialization, and global competitiveness.</p>
+              <ul class="card-list">
+                <li>Fostering academic excellence and innovative teaching methodologies</li>
+                <li>Conducting impactful research that addresses real-world challenges</li>
+                <li>Developing graduates who are critical thinkers, ethical leaders, and globally competitive professionals</li>
+                <li>Creating a collaborative and inclusive campus environment that values diversity</li>
+                <li>Promoting sustainable practices and responsible resource management</li>
+                <li>Building strong partnerships with industry, government, and community organizations</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="values-container">
+            <h3 class="values-title">Core Values</h3>
+            <div class="values-grid">
+              <div class="value-item">
+                <h4 class="value-name">Equity, Teamwork and Collaboration</h4>
+                <p class="value-description">We believe in fostering an inclusive environment where everyone works together to achieve common goals, ensuring fairness and mutual respect.</p>
+              </div>
+              <div class="value-item">
+                <h4 class="value-name">Integrity and Ethical Practices</h4>
+                <p class="value-description">We uphold the highest standards of honesty and ethics in all our actions, ensuring trust and accountability.</p>
+              </div>
+              <div class="value-item">
+                <h4 class="value-name">Honesty and Patriotism</h4>
+                <p class="value-description">We are committed to truthfulness and a deep sense of loyalty and dedication to our community and nation.</p>
+              </div>
+              <div class="value-item">
+                <h4 class="value-name">Being Mindful of Others</h4>
+                <p class="value-description">We value empathy and compassion, striving to understand and support the needs and feelings of others.</p>
+              </div>
+              <div class="value-item">
+                <h4 class="value-name">Innovativeness and Creativity</h4>
+                <p class="value-description">We encourage original thinking and the pursuit of new ideas to solve challenges and drive progress.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leadership Section -->
+      <section id="leadership" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">College Leadership</h2>
+            <p class="section-subtitle">Meet the individuals guiding the future of Taveta TVC</p>
+          </div>
+
+          <div class="leadership-group">
+            <div class="leadership-header">
+              <h3 class="group-title">President & Vice Chancellors</h3>
+              <div class="title-underline"></div>
+            </div>
+            
+            <div class="leadership-grid">
+              <div class="leader-card">
+                <div class="leader-image">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Dr. Jonathan Thornton">
+                </div>
+                <div class="leader-info">
+                  <h4 class="leader-name">D.r Makokha</h4>
+                  <p class="leader-title">President</p>
+                  <p class="leader-bio">Leading Taveta TVC since 2020, Dr. Thornton brings over 30 years of experience in higher education administration and research.</p>
+                  <p class="leader-education">Ph.D (HR)</p>
+                </div>
+              </div>
+              
+              <div class="leader-card">
+                <div class="leader-image">
+                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Dr. Amara Chen">
+                </div>
+                <div class="leader-info">
+                  <h4 class="leader-name"> Amara Chen</h4>
+                  <p class="leader-title">Vice Chancellor, Academic Affairs</p>
+                  <p class="leader-bio">Dr. Chen oversees all academic programs and faculty development, ensuring the highest standards of educational excellence.</p>
+                  <p class="leader-education">Ph.D. in Biochemistry, Stanford University</p>
+                </div>
+              </div>
+              
+              <div class="leader-card">
+                <div class="leader-image">
+                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Dr. Marcus Reynolds">
+                </div>
+                <div class="leader-info">
+                  <h4 class="leader-name">Dr. Marcus Reynolds</h4>
+                  <p class="leader-title">Vice Chancellor, Research & Innovation</p>
+                  <p class="leader-bio">Leading our research initiatives, Dr. Reynolds has helped secure over $50M in research grants during his tenure.</p>
+                  <p class="leader-education">Ph.D. in Physics, MIT</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="leadership-group">
+            <div class="leadership-header">
+              <h3 class="group-title">Board of Trustees</h3>
+              <div class="title-underline"></div>
+            </div>
+            
+            <div class="trustees-grid">
+              <div class="trustee-card">
+                <div class="trustee-image">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Ms. Elena Dominguez">
+                </div>
+                <h4 class="trustee-name">Ms. Elena Dominguez</h4>
+                <p class="trustee-title">Chairperson</p>
+                <p class="trustee-org">CEO, Global Tech Innovations</p>
+              </div>
+              
+              <div class="trustee-card">
+                <div class="trustee-image">
+                  <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Mr. Robert Chang">
+                </div>
+                <h4 class="trustee-name">Mr. Robert Chang</h4>
+                <p class="trustee-title">Vice Chair</p>
+                <p class="trustee-org">Managing Partner, Venture Capital Firm</p>
+              </div>
+              
+              <div class="trustee-card">
+                <div class="trustee-image">
+                  <img src="https://images.unsplash.com/photo-1553267751-1c148a7280a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Dr. James Wilson">
+                </div>
+                <h4 class="trustee-name">Dr. James Wilson</h4>
+                <p class="trustee-title">Treasurer</p>
+                <p class="trustee-org">Former CFO, National Bank</p>
+              </div>
+              
+              <div class="trustee-card">
+                <div class="trustee-image">
+                  <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Ms. Priya Sharma">
+                </div>
+                <h4 class="trustee-name">Ms. Priya Sharma</h4>
+                <p class="trustee-title">Secretary</p>
+                <p class="trustee-org">Non-profit Foundation Director</p>
+              </div>
+            </div>
+            
+            <div class="view-more">
+              <a href="#" class="view-more-link">View all board members</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Campus Locations Section -->
+      <section id="campus" class="section bg-gray">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Campus Locations</h2>
+            <p class="section-subtitle">Explore our beautiful campus-details around the world</p>
+          </div>
+
+          <div class="campus-grid">
+
+            <div class="campus-card">
+                <alt="Technical Campus">
+                </div>
+                <div class="campus-info">
+                  <div class="campus-header">
+                    <div>
+                      <h3 class="campus-name"></h3>
+                      <p class="campus-location"></p>
+                    </div>
+                  </div>
+                  <p class="campus-description">Taveta Technical and Vocational College (TVC) is uniquely situated near the Taveta-Holili border crossing, making it a pivotal institution in the region. Its location not only facilitates accessibility for students from both Kenya and Tanzania but also positions it amidst spectacular surroundings that inspire and enhance the learning experience.
+                    The campus is enveloped by the tranquil beauty of Taveta's natural environment, providing a calm and refreshing atmosphere for academic and personal growth. With views of towering Mount Kilimanjaro in the distance and the serene Lake Chala within reach, Taveta TVC enjoys proximity to some of the most iconic landscapes in East Africa. The vibrant culture of the nearby town and the dynamic cross-border interactions further add to its charm, making the college a hub for diverse perspectives and opportunities.
+                    To help guide someone to Taveta TVC, here's a Google Maps link where you can pinpoint its exact location and plan the best route. </p>
+                  <div class="campus-details">
+                    <div class="campus-detail">
+                      <h4 class="detail-label">Established</h4>
+                      <p class="detail-value">2019</p>
+                    </div>
+                    <div class="campus-detail">
+                      <h4 class="detail-label">Student Population</h4>
+                      <p class="detail-value">1000+</p>
+                    </div>
+                    <div class="campus-detail">
+                      <h4 class="detail-label">Acreage</h4>
+                      <p class="detail-value">8 acres</p>
+                    </div>
+                    <div class="campus-detail">
+                      <h4 class="detail-label">Research Centers</h4>
+                      <p class="detail-value">2 facilities</p>
+                    </div>
+                  </div>
+                  <div class="campus-links">
+                    <a href="#" class="campus-link">Virtual Tour</a>
+                    <a href="#" class="campus-link">Campus Map</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="global-presence">
+            <h3 class="global-title">Global Presence</h3>
+            <p class="global-description">Taveta Technical and Vocational College (TVC): Empowering Education in a Scenic Location
+              Taveta Technical and Vocational College (TVC) is a premier institution located near the Taveta-Holili border in Taita Taveta County, Kenya. Surrounded by the breathtaking landscapes of East Africa, the college offers an inspiring learning environment for students from both Kenya and neighboring Tanzania.
+              Nestled near iconic landmarks such as Mount Kilimanjaro, Lake Chala, and Tsavo National Park, Taveta TVC combines education with natural beauty. The serene environment creates an ideal setting for academic focus, innovation, and personal growth.
+              Taveta TVC provides a variety of technical and vocational programs designed to equip students with practical skills and empower them to excel in their chosen fields. Its proximity to the border facilitates cultural exchange and diverse perspectives, making it a hub for regional integration and progress.
+              Whether you’re seeking quality education or simply wish to visit the campus and enjoy the surrounding beauty, Taveta TVC is an extraordinary place where learning meets opportunity.</p>
+            
+            <div class="global-grid">
+              <div class="global-item">
+                <h4 class="global-item-title">Regional Outreach</h4>
+                <p class="global-item-text">Community development initiatives in Taita Taveta County, partnerships with local industries, and skill development programs for the youth.</p>
+              </div>
+              <div class="global-item">
+                <h4 class="global-item-title">Study Opportunities</h4>
+                <p class="global-item-text">Collaborations with Kenyan universities and technical institutions, as well as exchange programs with select international institutions.</p>
+              </div>
+              <div class="global-item">
+                <h4 class="global-item-title">Partner Institutions</h4>
+                <p class="global-item-text">10+ institutions across East Africa and partnerships with global organizations for research and innovation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="footer-placeholder"></div>
+    <script>
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-placeholder').innerHTML = data;
+        });
+    </script>
+    </div>
+    <!-- Scripts -->
+    <script src="about-script.js"></script>
+    <script>
+      // Initialize Lucide icons
+      lucide.createIcons();
+    </script>
+    <script src="main.js"></script>
+  </body>
+</html>
